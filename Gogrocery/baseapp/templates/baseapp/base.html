@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" 
+    crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'app/css/owl.carousel.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'app/css/all.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'app/css/style.css'%}" />
+    <style>
+        #bg{
+            background-size: 1400px 650px;
+            background-repeat: no-repeat;
+            background-position: top;
+            background-attachment: fixed;
+        }
+        .gradient1-custom {
+        background:linear-gradient(to right, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9));
+        }
+        .gradient2-custom {
+            background:linear-gradient(to right, rgba(40, 26, 198, 0.71), rgba(37, 117, 252, 0.9));
+            }
+    </style>
+
+    
+
+
+    <title>Gogrocery |  {% block title %}  {% endblock title %}</title>
+</head>
+<body id="bg" style="background-image: url('{% static "app/images/bgfix.jpg"%}');">
+ 
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-light gradient1-custom">
+        <div class="container-fluid ">
+            <a class="navbar-brand" href="#">
+                <img src="{% static "app/images/Gogrocery_logo.png"%}" height="50" width="150"style="border-radius:10px;"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                     
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'about' %}">About Us</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'contact' %}">Contact Us</a>
+                    </li>
+
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary text-white" type="submit">Search</button>
+                </form>
+            </div>
+            {% if request.user.is_authenticated %}
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link dropdown-toggle text-white" href="#"
+                    id="profileDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">{{request.user}}</a>
+                    <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item" href="{% url 'viewprofile' %}">Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'addadress' %}">Manage Address</a></li>
+                        <li><a class="dropdown-item" href="#">Orders</a></li>
+                        <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change password</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item mx-2">
+                    <a href="#" class="nav-link text-white">Cart 4</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a href="#" class="nav-link text-white">Wishlist 4</a>
+                </li>
+            </ul>
+                {%else%}
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item ">
+                    <a href="{% url 'login' %}" class="nav-link text-white">Login</a>
+                </li>
+                
+                <li class="nav-item ">
+                    <a href="{% url 'customerregistration' %}" class="nav-link text-white">Registration</a>
+                </li>
+            </ul>
+                {% endif %}
+                
+            
+
+
+
+
+
+
+
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <ul class="list-inline bg-danger d-flex justify-content-evenly gradient2-custom">
+                <li class="list-inline-item"><a class="nav-link  text-white " href="{% url 'category' 1 %}" tabindex="-1" aria-disabled="true">Regular</a></li>
+                <p class="text-white list-inline-item h4">|</p>
+                <li class="list-inline-item"><a class="nav-link text-white " href="{% url 'category' 2 %}" tabindex="-1" aria-disabled="true">Fruits</a></li>
+                <p class="text-white list-inline-item h4">|</p>
+                <li class="list-inline-item"><a class="nav-link text-white " href="{% url 'category' 3 %}" tabindex="-1" aria-disabled="true">Vegetables</a></li>
+                <p class="text-white list-inline-item h4">|</p>
+                <li class="list-inline-item"><a class="nav-link text-white " href="{% url 'category' 4 %}" tabindex="-1" aria-disabled="true">Dairy</a></li>
+                <p class="text-white list-inline-item h4">|</p>
+                <li class="list-inline-item"><a class="nav-link text-white " href="{% url 'category' 5 %}" tabindex="-1" aria-disabled="true">Snacks</a></li>
+                <p class="text-white list-inline-item h4">|</p>
+                <li class="list-inline-item"><a class="nav-link text-white " href="{% url 'category' 6 %}" tabindex="-1" aria-disabled="true">Beverages</a></li>
+            </ul>
+        </div>
+    </div>
+    {% block banner-slider %}{% endblock banner-slider %}
+    <br>
+    {% block information %}{% endblock information %}
+    {% block main-content %}{% endblock main-content %}
+
+    <footer class="container-fluid fixed-bottom bg-success text-white text-center p-2 mt-5 gradient1-custom" >
+        Copyright: 2023 || Developed by : Abhishek kumar
+    </footer>
+
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" 
+    integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" 
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" 
+    integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" 
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+    <script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'app/js/all.min.js' %}"></script>
+    <script src="{% static 'app/js/myscript.js' %}"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+admin details
+
+username: Abhi
+email: Abhi@abhi.gmail.com
+password: Go6Grocery
+password: Go6Grocery
+
+
+
+other user
+--------------
+username: barun
+email: bar@un.gmail.com
+password: du@2sara
+password: du@2sara
+
+
+username: nanda
+email: nan@da.gmail.com
+password: mis@0officer
+password: mis@0officer
