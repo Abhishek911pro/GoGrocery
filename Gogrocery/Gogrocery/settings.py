@@ -117,6 +117,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR/'media'
 
 #this will redirect to profile page after submiting login form
 LOGIN_REDIRECT_URL = '/viewprofile/'

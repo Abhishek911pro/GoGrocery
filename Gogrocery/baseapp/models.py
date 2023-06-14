@@ -57,23 +57,11 @@ class Customer(models.Model):
     def _str_(self):
         return self.name
     
-# class Customerprofile(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     name = models.CharField(max_length=200)
-#     gender = models.CharField(choices=[('M', 'Male'), ('F', 'Female')], max_length=10,default='M')
-#     mobile = models.IntegerField(default=0)
-#     def _str_(self):
-#         return self.name
+class Cart(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
 
-    
-# class CustomerAddress(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-#     name = models.CharField(max_length=200)
-#     locality = models.CharField(max_length=200)
-#     city = models.CharField(max_length=50)
-#     mobile = models.IntegerField(default=0)
-#     zipcode = models.IntegerField()
-#     state = models.CharField(choices=STATE_CHOICES, max_length=100)
-#     def _str_(self):
-#         return self.name
+    @property
+    def total_cost(self):
+        return self.quantity * self.product.discounted_price

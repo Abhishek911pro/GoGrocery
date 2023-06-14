@@ -24,7 +24,6 @@ $('#slider1, #slider2, #slider3').owlCarousel({
 })
 
 $('.plus-cart').click(function(){
-    console.log("button_clicked")
     var id=$(this).attr("pid").toString();
     var eml=this.parentNode.children[2] 
     $.ajax({
