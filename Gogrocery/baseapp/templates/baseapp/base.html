@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{% static 'app/css/owl.carousel.min.css'%}" />
     <link rel="stylesheet" href="{% static 'app/css/all.min.css'%}" />
     <link rel="stylesheet" href="{% static 'app/css/style.css'%}" />
+    
     <style>
         #bg{
             background-size: 1400px 650px;
@@ -28,9 +29,7 @@
             }
     </style>
 
-    
-
-
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <title>Gogrocery |  {% block title %}  {% endblock title %}</title>
 </head>
 <body id="bg" style="background-image: url('{% static "app/images/bgfix.jpg"%}');">
@@ -78,7 +77,7 @@
                     </ul>
                 </li>
                 <li class="nav-item mx-2">
-                    <a href="#" class="nav-link text-white">Cart 4</a>
+                    <a href="{% url 'showcart' %}" class="nav-link text-white">Cart 4</a>
                 </li>
                 <li class="nav-item mx-2">
                     <a href="#" class="nav-link text-white">Wishlist 4</a>
@@ -127,6 +126,9 @@
     <br>
     {% block information %}{% endblock information %}
     {% block main-content %}{% endblock main-content %}
+    {% block payment-gateway %}{% endblock payment-gateway %}
+
+
 
     <footer class="container-fluid fixed-bottom bg-success text-white text-center p-2 mt-5 gradient1-custom" >
         Copyright: 2023 || Developed by : Abhishek kumar

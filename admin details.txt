@@ -19,3 +19,9 @@ username: nanda
 email: nan@da.gmail.com
 password: mis@0officer
 password: mis@0officer
+
+
+key id : rzp_test_8mePImxF5Ff2b3
+key secret : utLPHfklOvi0zO5bUKwy9EIX
+
+for successful payment = success@razorpay

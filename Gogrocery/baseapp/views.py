@@ -2,11 +2,14 @@ from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.views import View
-from .models import Cart, Category, Customer,SubCategory,Product
+import razorpay
+
+from .models import Cart, Category, Customer, OrderPlaced, Payment,SubCategory,Product
 from .forms import CustomerRegistrationForm, CustomerProfileForm, EditUserProfileForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.db.models import Q
+from django.conf import settings
 # Create your views here.
 
 
@@ -169,7 +172,7 @@ def show_cart(request):
     for p in cart:
         value = p.quantity * p.product.discounted_price
         amount = amount + value
-    totalamount = amount + 40 
+    totalamount = amount + 40  
     return render(request, 'baseapp/addtocart.html',locals())
 
 class checkout(View):
@@ -181,8 +184,50 @@ class checkout(View):
         for p in cart_items:
             value = p.quantity * p.product.discounted_price
             famount = famount + value
-        totalamount = famount +40
+        totalamount = famount + 40
+        razoramount = int(totalamount * 100)
+        client = razorpay.Client(auth=(settings.RAZOR_KEY_ID, settings.RAZOR_KEY_SECRET))
+
+        data = { "amount": razoramount, "currency": "INR", "receipt": "order_rcptid_12" }
+        payment_response = client.order.create(data=data)
+        print(payment_response)
+        # {'id': 'order_M2fzVreqWqkoYO', 'entity': 'order', 'amount': 19500, 'amount_paid': 0, 'amount_due': 19500, 'currency': 'INR', 'receipt': 'order_rcptid_12', 'offer_id': None, 'status': 'created', 'attempts': 0, 'notes': [], 'created_at': 1686934864}
+        order_id = payment_response['id']
+        order_status = payment_response['status']
+        if order_status == 'created':
+            payment = Payment(
+                user = user,
+                amount = totalamount,
+                razorpay_order_id = order_id,
+                razorpay_payment_status = order_status
+            )
+            
+            payment.save()
         return render(request, 'baseapp/checkout.html',locals())
+
+@login_required    
+def payment_done(request):
+    order_id = request.GET.get('order_id')
+    payment_id = request.GET.get('payment_id')
+    cust_id = request.GET.get('cust_id')
+    print(cust_id)
+    #print("payment_done : oid = ",order_id," pid = ",payment_id," cid = ",cust_id)
+    user = request.user
+    #return redirect("order")
+    #customer = Customer.objects.get(user=user)
+    customer = Customer.objects.get(id=cust_id)
+    #to update payment status and payment id
+    payment = Payment.objects.get(razorpay_order_id = order_id)
+    payment.paid = True
+    payment.razorpay_payment_id = payment_id
+    payment.save()
+    #to save order details
+    cart = Cart.objects.filter(user=user)
+    for c in cart:
+        print("saved data in order placed")
+        OrderPlaced(user=user,customer=customer,product=c.product,quantity=c.quantity,payment=payment).save()
+        c.delete()
+    return redirect("orders")
 
 
 def plus_cart(request):

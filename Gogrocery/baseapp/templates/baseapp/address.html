@@ -26,8 +26,11 @@
                                 <p>City: {{ad.city}}</p>
                                 <p>State: {{ad.state}}</p>
                                 <p>Pincode: {{ad.zipcode}}</p>
-                                <p class="text-center"><a href="{% url 'updateAddress' pk=ad.id %}" type="button" class="btn btn-success">Update</a></p>
-                                <p class="text-center"><a href="{% url 'deleteAddress' pk=ad.id %}" type="button" class="btn btn-success">Delete</a></p>
+                                <div class="d-flex justify-content-around">
+                                    <span class="text-center"><a href="{% url 'updateAddress' pk=ad.id %}" type="button" class="btn btn-success">Update</a></span>
+                                    <span class="text-center "><a href="{% url 'deleteAddress' pk=ad.id %}" type="button" class="btn btn-success">Delete</a></span>
+                                </div>
+                                
                             </div>
                         </div>  
                     </div>
