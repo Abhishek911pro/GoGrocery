@@ -57,8 +57,8 @@
                     </li>
 
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" role="search" action="/search">
+                    <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
                     <button class="btn btn-outline-primary text-white" type="submit">Search</button>
                 </form>
             </div>
@@ -67,20 +67,21 @@
                 <li class="nav-item dropdown mx-2">
                     <a class="nav-link dropdown-toggle text-white" href="#"
                     id="profileDropdown" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">{{request.user}}</a>
+                    aria-expanded="false"><i class="fa fa-user fa-lg" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item bg-dark text-white" >{{request.user}}</a></li>
                         <li><a class="dropdown-item" href="{% url 'viewprofile' %}">Profile</a></li>
                         <li><a class="dropdown-item" href="{% url 'addadress' %}">Manage Address</a></li>
-                        <li><a class="dropdown-item" href="#">Orders</a></li>
+                        <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li>
                         <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change password</a></li>
                         <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                     </ul>
                 </li>
                 <li class="nav-item mx-2">
-                    <a href="{% url 'showcart' %}" class="nav-link text-white">Cart 4</a>
+                    <a href="{% url 'showcart' %}" class="nav-link text-white"><span class="badge bg-danger">{% if totalitem > 0%} {{totalitem}} {% endif %}</span><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a href="#" class="nav-link text-white">Wishlist 4</a>
+                    <a href="#" class="nav-link text-white"><span class="badge bg-danger">{% if wishitem > 0%} {{wishitem}} {% endif %}</span><i class="fas fa-heart fa-lg"></i></a>
                 </li>
             </ul>
                 {%else%}

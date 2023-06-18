@@ -54,7 +54,7 @@ class Customer(models.Model):
     mobile = models.IntegerField(default=0)
     zipcode = models.IntegerField()
     state = models.CharField(choices=STATE_CHOICES, max_length=100)
-    def _str_(self):
+    def __str__(self):
         return self.name
     
 class Cart(models.Model):
@@ -96,3 +96,7 @@ class OrderPlaced(models.Model):
     def total_cost(self):
         return self.quantity * self.product.discounted_price
     
+    
+class Wishlist(models.Model):
+    user = models.ForeignKey(User, on_delete= models.CASCADE)
+    product = models.ForeignKey(Product,on_delete= models.CASCADE)
