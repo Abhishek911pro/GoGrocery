@@ -2,6 +2,8 @@
 {% load static %}
 {% block title %}Home{% endblock title %}
 
+
+ 
 {% block banner-slider %}
     <div id="carouselExampleSlidesOnly" class="carousel slide " data-bs-ride="carousel" style="width:95%; margin:auto; ">
         <div class="carousel-inner " style="border-radius:25px; border:2px solid black;">
@@ -25,9 +27,7 @@
 <div class="container">
     <div class="row bg-success text-center p-5 text-white border-bottom shadow">
         <h1>Products</h1>
-        <small class="fs-5">Gogrocery offers a wide range of products in regular food items to dairy,beverages and by-product categories
-
-            we offers wide range of products like Flour, Spices...........
+        <small class="fs-5">where freshness meets convenience! We take pride in offering a wide selection of farm-fresh produce, high-quality meats, and pantry essentials. With our lightning-fast delivery service, your groceries arrive at your doorstep in no time. 
         </small>
     </div>
 </div>
@@ -35,28 +35,47 @@
 
 {% block main-content %}
 
-    <div class="container">
-        {% for i in category %}
-            <br>
-            <h2>{{i.name}}</h2>
-            <br>
-            <div class="row container">
-                {% for j in i.product_set.all %} 
-                    <div class="col-sm-3 mb-4">
-                        <div class="card p-2">
-                            <img class="card-img-top img-fluid" src="{% static 'app/images/product/apple.jpg' %}" alt="Card image cap">
-                            <div class="card-block">
-                                <h4 class="card-title">{{j.title}}</h4>
-                                <p class="card-text">This is a longer card with supporting text below as a natural lead.</p>
-                                <p class="card-text"><small class="text-muted">{{j.discounted_price}}</small></p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                {% endfor %}
-            </div>
-        {% endfor %}    
-    </div>
-    </br>
-    </br>
+   
 {% endblock main-content %}
+
+
+
+
+
+{% block home-carousel %}
+
+{% for category in category %}
+  <h1>{{ category.name }}</h1>
+  <div id="carouselExampleControls-{{ category.id }}" class="carousel container carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      {% for product in category.product_set.all %}
+        {% if forloop.counter0|divisibleby:4 %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <div class="row">
+        {% endif %}
+            <div class="col-lg-3">
+              <div class="card p-2 border border-dark" style="height: 300px; width: 250px;">
+                <img class="card-img-top img-fluid" src="{% static 'app/images/product/apple.jpg' %}" alt="Card image cap">
+                <div class="card-block">
+                  <h4 class="card-title">{{ product.title }}</h4>
+                </div>
+              </div>
+            </div>
+        {% if forloop.counter|divisibleby:4 or forloop.last %}
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls-{{ category.id }}" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls-{{ category.id }}" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+{% endfor %}
+
+{% endblock home-carousel %} 

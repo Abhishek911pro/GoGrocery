@@ -25,6 +25,7 @@ def home(request):
     product = Product.objects.all()
     return render(request, "baseapp/home.html",locals())
 
+
 def about(request):
     totalitem = 0
     wishitem = 0
@@ -66,17 +67,18 @@ class SubCategoryView(View):
         subcategory = SubCategory.objects.filter(category_id=val1)
         product = Product.objects.filter(sub_category=val2)
         return render(request, "baseapp/subcategory.html",locals())
-    
+
+   
 class ProductDetail(View):
     def get(self,request,pk):
         totalitem = 0
         wishitem = 0
+        product = Product.objects.get(pk=pk)
         if request.user.is_authenticated:
             totalitem = len(Cart.objects.filter(user=request.user))
             wishitem = len(Wishlist.objects.filter(user=request.user))
-        product = Product.objects.get(pk=pk)
-       # wishlist = Wishlist.objects.filter(product=product)
-        wishlist = Wishlist.objects.filter(Q(product=product) & Q(user=request.user))
+            wishlist = Wishlist.objects.filter(Q(product=product) & Q(user=request.user))
+        
         return render(request,"baseapp/productdetail.html",locals())
     
 class CustomerRegistrationView(View):
@@ -245,6 +247,17 @@ def show_cart(request):
     totalamount = amount + 40  
     return render(request, 'baseapp/addtocart.html',locals())
 
+@login_required
+def show_wishlist(request):
+    user = request.user
+    totalitem = 0
+    wishitem = 0
+    if request.user.is_authenticated:
+        totalitem = len(Cart.objects.filter(user=request.user))
+        wishitem = len(Wishlist.objects.filter(user=request.user))
+    product = Wishlist.objects.filter(user=user)
+    return render(request,"baseapp/wishlist.html",locals())
+
 class checkout(View):
     def get(self,request):
         totalitem = 0
@@ -313,7 +326,7 @@ def orders(request):
     order_placed = OrderPlaced.objects.filter(user=request.user)
     return render(request, 'baseapp/orders.html',locals())
 
-
+@login_required
 def plus_cart(request):
     if request.method == 'GET':
         prod_id=request.GET['prod_id']
@@ -334,7 +347,7 @@ def plus_cart(request):
         }
         return JsonResponse(data)
     
-
+@login_required
 def minus_cart(request):
     if request.method == 'GET':
         prod_id=request.GET['prod_id']
@@ -354,7 +367,8 @@ def minus_cart(request):
             'totalamount':totalamount
         }
         return JsonResponse(data)
-    
+
+@login_required    
 def remove_cart(request):
     if request.method == 'GET':
         prod_id=request.GET['prod_id']
@@ -372,7 +386,8 @@ def remove_cart(request):
             'totalamount':totalamount
         }
         return JsonResponse(data)
-    
+
+@login_required    
 def plus_wishlist(request):
     if request.method == 'GET':
         prod_id = request.GET['prod_id']
@@ -384,6 +399,7 @@ def plus_wishlist(request):
         }
         return JsonResponse(data)
 
+@login_required
 def minus_wishlist(request):
     if request.method == 'GET':
         prod_id = request.GET['prod_id']
@@ -404,3 +420,4 @@ def search(request):
     query = request.GET['search']
     product = Product.objects.filter(Q(title__icontains=query)) #field lookup
     return render(request,"baseapp/search.html",locals())
+    

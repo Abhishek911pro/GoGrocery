@@ -1,3 +1,4 @@
+from django.contrib import admin
 from . import views
 from django.urls import path
 from django.conf import settings
@@ -27,6 +28,8 @@ urlpatterns = [
     path('orders/',views.orders, name='orders'),
 
     path('search/', views.search, name='search'),
+    path('wishlist/', views.show_wishlist, name='wishlist'),
+
 
     path('pluscart/', views.plus_cart),
     path('minuscart/', views.minus_cart),
@@ -55,4 +58,5 @@ urlpatterns = [
       
 ]
 
-#if want function based view { path('test/', views.test), }
+admin.site.site_header = "Gogrocery"
+admin.site.site_title = "Gogrocery"

@@ -13,8 +13,16 @@
     <link rel="stylesheet" href="{% static 'app/css/owl.carousel.min.css'%}" />
     <link rel="stylesheet" href="{% static 'app/css/all.min.css'%}" />
     <link rel="stylesheet" href="{% static 'app/css/style.css'%}" />
+
+
+   
+
+
+    <link rel="stylesheet" href="{% static 'app/css/index.css'%}" />
+    
     
     <style>
+        
         #bg{
             background-size: 1400px 650px;
             background-repeat: no-repeat;
@@ -65,7 +73,7 @@
             {% if request.user.is_authenticated %}
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown mx-2">
-                    <a class="nav-link dropdown-toggle text-white" href="#"
+                    <a class="nav-link dropdown-toggle text-white" 
                     id="profileDropdown" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false"><i class="fa fa-user fa-lg" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
@@ -81,7 +89,7 @@
                     <a href="{% url 'showcart' %}" class="nav-link text-white"><span class="badge bg-danger">{% if totalitem > 0%} {{totalitem}} {% endif %}</span><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a href="#" class="nav-link text-white"><span class="badge bg-danger">{% if wishitem > 0%} {{wishitem}} {% endif %}</span><i class="fas fa-heart fa-lg"></i></a>
+                    <a href="{% url 'wishlist' %}" class="nav-link text-white"><span class="badge bg-danger">{% if wishitem > 0%} {{wishitem}} {% endif %}</span><i class="fas fa-heart fa-lg"></i></a>
                 </li>
             </ul>
                 {%else%}
@@ -127,6 +135,7 @@
     <br>
     {% block information %}{% endblock information %}
     {% block main-content %}{% endblock main-content %}
+    {% block home-carousel %}{% endblock home-carousel %}
     {% block payment-gateway %}{% endblock payment-gateway %}
 
 
@@ -151,6 +160,14 @@
     <script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
     <script src="{% static 'app/js/all.min.js' %}"></script>
     <script src="{% static 'app/js/myscript.js' %}"></script>
+
+   
+    
+
+   
+    {% comment %} <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="{% static 'app/js/index.js' %}"></script> 
+     {% endcomment %}
 
 
 
