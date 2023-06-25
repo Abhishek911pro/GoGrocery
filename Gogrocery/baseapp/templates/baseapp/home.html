@@ -37,30 +37,9 @@
     <span class="visually-hidden">Next</span>
   </a>
 </div>
-
-
-
-
-
-
-
-    {% comment %} <div id="carouselExampleSlidesOnly" class="carousel slide " data-bs-ride="carousel" style="width:95%; margin:auto; ">
-        <div class="carousel-inner " style="border-radius:25px; border:2px solid black;">
-            <div class="carousel-item active" >
-                <img src={% static 'app/images/banner/mb1.png' %} class="d-block w-100" alt="banner image">
-            </div>
-            <div class="carousel-item ">
-                <img src={% static 'app/images/banner/mb2.png' %} class="d-block w-100" alt="banner image">
-            </div>
-            <div class="carousel-item ">
-                <img src={% static 'app/images/banner/mb3.png' %} class="d-block w-100" alt="banner image">
-            </div>
-            <div class="carousel-item ">
-                <img src={% static 'app/images/banner/mb4.png' %} class="d-block w-100" alt="banner image">
-            </div>
-        </div>
-    </div> {% endcomment %}
+  
 {% endblock banner-slider %}
+
 
 {% block information %}
 <div class="d-flex justify-content-center" style="height:240px; " >
@@ -71,25 +50,25 @@
 {% block barndcards %}
 <div class="container d-flex justify-content-around">
   <div class="card shadow " style="height:150px; width:150px;">
-    <a href="#" class="text-decoration-none text-dark" >
-      <img src={% static 'app/images/product/apple.jpg' %} class="card-img-top " alt="Image" >
+    <a href="{% url 'brandfilter' 1 %}" class="text-decoration-none text-dark" >
+      <img src={% static 'app/images/product/apple.jpg' %} class="card-img-top " alt="Image" >1
     </a>
   </div>
   <div class="card shadow " style="height:150px; width:150px;">
-    <a href="#" class="text-decoration-none text-dark">
-      <img src={% static 'app/images/product/apple.jpg' %} class="card-img-top" alt="Image">
+    <a href="{% url 'brandfilter' 2 %}" class="text-decoration-none text-dark">
+      <img src={% static 'app/images/product/apple.jpg' %} class="card-img-top" alt="Image">2
     </a>
   </div><div class="card shadow " style="height:150px; width:150px;">
-    <a href="#" class="text-decoration-none text-dark">
-      <img src={% static 'app/images/product/apple.jpg' %} class="card-img-top" alt="Image">
+    <a href="{% url 'brandfilter' 3 %}" class="text-decoration-none text-dark">
+      <img src={% static 'app/images/product/apple.jpg' %} class="card-img-top" alt="Image">3
     </a>
   </div><div class="card shadow " style="height:150px; width:150px;">
-    <a href="#" class="text-decoration-none text-dark">
-      <img src={% static 'app/images/product/apple.jpg' %} class="card-img-top" alt="Image">
+    <a href="{% url 'brandfilter' 4 %}" class="text-decoration-none text-dark">
+      <img src={% static 'app/images/product/apple.jpg' %} class="card-img-top" alt="Image">4
     </a>
   </div><div class="card shadow " style="height:150px; width:150px;">
-    <a href="#" class="text-decoration-none text-dark">
-      <img src={% static 'app/images/product/apple.jpg' %} class="card-img-top" alt="Image">
+    <a href="{% url 'brandfilter' 5 %}" class="text-decoration-none text-dark">
+      <img src={% static 'app/images/product/apple.jpg' %} class="card-img-top" alt="Image">5
     </a>
   </div>
 </div>
@@ -106,39 +85,92 @@
 
 {% block home-carousel %}
 {% for category in category %}
-<h1>{{category.name}}</h1>
-<div id="carouselExampleCaptions-{{ category.id }}" class="carousel container carousel-dark slide border border-dark " data-bs-ride="false">
-  <div class="carousel-inner ">
-    {% for product in category.product_set.all %}
-      {% if forloop.counter0|divisibleby:4 %}
-        <div class="carousel-item {% if forloop.first %} active{% endif %}">
-          <div class="row ">
-      {% endif %}
-      <div class="col-sm-3 ">
-        <div class="card " style="height: 250px; width: 200px; margin-left:30px;">
-          <img src="{% static 'app/images/product/apple.jpg' %}" class="card-img-top" style="height: 100px; width: 100px;">
-          <div class="card-body">
-            <h5 class="card-title">{{ product.id }}Card title</h5>
+  <h1>{{category.name}}</h1>
+  <div id="carouselExampleCaptions-{{ category.id }}" class="carousel container carousel-dark slide border border-dark " data-bs-ride="false">
+    <div class="carousel-inner ">
+      {% for product in category.product_set.all %}
+        {% if forloop.counter0|divisibleby:4 %}
+          <div class="carousel-item {% if forloop.first %} active{% endif %}">
+            <div class="row ">
+        {% endif %}
+        <div class="col-sm-3 ">
+          <div class="card " style="height: 250px; width: 200px; margin-left:30px;">
+            <img src="{% static 'app/images/product/apple.jpg' %}" class="card-img-top" style="height: 100px; width: 100px;">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.id }}Card title</h5>
+            </div>
           </div>
+        </div>
+        {% if forloop.counter0|add:1|divisibleby:4 or forloop.last %}
+            </div>
+          </div>
+          
+        {% endif %}
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions-{{ category.id }}" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions-{{ category.id }}" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div><br>
+
+  {% comment %} for addcarousel between productcarousels {% endcomment %}
+  {% if forloop.counter0|divisibleby:1 %}
+    {% if forloop.counter0 == 0 %}
+    <div id="myCarousel" class=" carousel slide container" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="img-fluid" src={% static 'app/images/addcarousel/1.png' %} alt="Image 1" style="width: 100%; height: 150px;">
+        </div>
+        <div class="carousel-item">
+          <img class="img-fluid" src={% static 'app/images/addcarousel/6.png' %} alt="Image 3" style="width: 100%; height: 150px;">
+        </div>
+        <div class="carousel-item">
+          <img class="img-fluid" src={% static 'app/images/addcarousel/5.png' %} alt="Image 3" style="width: 100%; height: 150px;">
         </div>
       </div>
-      {% if forloop.counter0|add:1|divisibleby:4 or forloop.last %}
-          </div>
+    </div>
+    {% elif forloop.counter0 == 2 %}
+    <div id="myCarousel" class=" carousel slide container" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="img-fluid" src={% static 'app/images/addcarousel/13.png' %} alt="Image 1" style="width: 100%; height: 200px;">
         </div>
-      {% endif %}
-    {% endfor %}
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions-{{ category.id }}" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions-{{ category.id }}" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+        <div class="carousel-item">
+          <img class="img-fluid" src={% static 'app/images/addcarousel/7.png' %} alt="Image 3" style="width: 100%; height: 200px;">
+        </div>
+        <div class="carousel-item">
+          <img class="img-fluid" src={% static 'app/images/addcarousel/14.png' %} alt="Image 3" style="width: 100%; height: 200px;">
+        </div>
+      </div>
+    </div>
+    {% elif forloop.counter0 == 4 %}
+    <div id="myCarousel" class=" carousel slide container" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="img-fluid" src={% static 'app/images/addcarousel/15.png' %} alt="Image 1" style="width: 100%; height: 150px;">
+        </div>
+        <div class="carousel-item">
+          <img class="img-fluid" src={% static 'app/images/addcarousel/17.png' %} alt="Image 3" style="width: 100%; height: 150px;">
+        </div>
+        <div class="carousel-item">
+          <img class="img-fluid" src={% static 'app/images/addcarousel/19.png' %} alt="Image 3" style="width: 100%; height: 150px;">
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  {% endif %}
 {% endfor %}
 <br><br><br>
 
 {% endblock home-carousel %}
+
+{% block footer %}
+
+<p>abhishek</p>
+{% endblock footer %}
 

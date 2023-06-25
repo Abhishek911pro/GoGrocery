@@ -18,6 +18,14 @@ STATE_CHOICES = (
     
 )
 
+BRANDS = (
+('1','1'),
+('2','2'),
+('3','3'),
+('4','4'),
+('5','5'),    
+)
+
 
 
 
@@ -39,8 +47,8 @@ class Product(models.Model):
     selling_price = models.FloatField(blank=True)
     discounted_price = models.FloatField(blank=True)
     description = models.TextField(blank=True)
-    other_info = models.TextField(blank=True)
-    benefits = models.TextField(blank=True)
+    pack_size = models.TextField(blank=True)
+    brands = models.TextField(choices=BRANDS, max_length=100,blank=True)
     product_image = models.ImageField(upload_to='product',blank=True)
     def __str__(self):
         return self.title +" ----- "+ str(self.sub_category)

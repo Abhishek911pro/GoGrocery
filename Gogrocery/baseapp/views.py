@@ -67,6 +67,16 @@ class SubCategoryView(View):
         subcategory = SubCategory.objects.filter(category_id=val1)
         product = Product.objects.filter(sub_category=val2)
         return render(request, "baseapp/subcategory.html",locals())
+    
+def brandfilter(request,bno):
+    totalitem = 0
+    wishitem = 0
+    if request.user.is_authenticated:
+        totalitem = len(Cart.objects.filter(user=request.user))
+        wishitem = len(Wishlist.objects.filter(user=request.user))
+    filtered_products = Product.objects.filter(brands=bno)
+    return render(request, "baseapp/brandfilter.html",locals())
+
 
    
 class ProductDetail(View):
