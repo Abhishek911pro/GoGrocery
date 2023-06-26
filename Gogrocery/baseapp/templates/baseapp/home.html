@@ -85,8 +85,9 @@
 
 {% block home-carousel %}
 {% for category in category %}
-  <h1>{{category.name}}</h1>
-  <div id="carouselExampleCaptions-{{ category.id }}" class="carousel container carousel-dark slide border border-dark " data-bs-ride="false">
+  <h1 class="mx-4">{{category.name}}</h1>
+  <br>
+  <div id="carouselExampleCaptions-{{ category.id }}" class="carousel container carousel-dark slide border border-dark bg-light p-3 rounded" data-bs-ride="false">
     <div class="carousel-inner ">
       {% for product in category.product_set.all %}
         {% if forloop.counter0|divisibleby:4 %}
@@ -94,10 +95,10 @@
             <div class="row ">
         {% endif %}
         <div class="col-sm-3 ">
-          <div class="card " style="height: 250px; width: 200px; margin-left:30px;">
-            <img src="{% static 'app/images/product/apple.jpg' %}" class="card-img-top" style="height: 100px; width: 100px;">
+          <div class="card border border-dark" style="height: 250px; width: 200px; margin-left:30px;">
+            <img src="{% static 'app/images/product/apple.jpg' %}" class="card-img-top  " style="height: 150px; width: 150px;">
             <div class="card-body">
-              <h5 class="card-title">{{ product.id }}Card title</h5>
+              <h5 class="card-title">{{product.title}}</h5>
             </div>
           </div>
         </div>
@@ -170,7 +171,165 @@
 {% endblock home-carousel %}
 
 {% block footer %}
+  <!-- Footer -->
+  <footer
+          class="text-center text-lg-start text-white"
+          style="background-color: #45526e"
+          >
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: Links -->
+      <section class="">
+        <!--Grid row-->
+        <div class="row">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">
+            <a href="{% url 'home' %}" class="text-decoration-none text-white"> Gogrocery</a>
+            </h6>
+            <h6 class="text-uppercase mb-4 font-weight-bold">
+             <a href="{% url 'about' %}" class="text-decoration-none text-white">About Us</a> 
+            </h6>
+            <h6 class=" mb-2 font-weight-bold">
+              All Products
+            </h6>
+            <p>
+              {% for i in product %}
+                <span>{{i.title}}, </span>
+              {% endfor %}
+            </p>
+          </div>
+          <!-- Grid column -->
 
-<p>abhishek</p>
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">All Category</h6>
+            {% for i in category %}
+              <p>
+                <a href="{% url 'category' i.id %}" class="text-white text-decoration-none">{{i.name}}</a>
+              </p>
+            {% endfor %}
+          </div>
+          <!-- Grid column -->
+
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">
+              Useful links
+            </h6>
+            <p>
+              <a href="{% url 'viewprofile' %}" class="text-white text-decoration-none">Your Account</a>
+            </p>
+            <p>
+              <a href="{% url 'orders' %}" class="text-white text-decoration-none">My Orders</a>
+            </p>
+            <p>
+              <a href="{% url 'wishlist' %}" class="text-white text-decoration-none">Wishlist</a>
+            </p>
+            <p>
+              <a href="{% url 'address' %}" class="text-white text-decoration-none">Delivery Addresses</a>
+            </p>
+            <p>
+              <a href="#" class="text-white text-decoration-none">Pravicy policy</a>
+            </p>
+            <p>
+              <a href="#" class="text-white text-decoration-none">Terms & Conditions</a>
+            </p>
+          </div>
+
+          <!-- Grid column -->
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+            <p><i class="fas fa-home mr-3"></i> Bihar, Patna 800001, IN</p>
+            <p><i class="fas fa-envelope mr-3"></i> Gogrocery@gmail.com</p>
+            <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+            <p><i class="fab fa-whatsapp fa-lg mr-3"></i> + 01 234 567 89</p>
+
+            <h6 class="text-uppercase mb-1 font-weight-bold mt-1">STATES</h6>
+            {% for i in states %}
+              <span>{{i.1}},</span>
+            {% endfor %}
+          </div>
+
+          
+          <!-- Grid column -->
+        </div>
+        <!--Grid row-->
+      </section>
+      <!-- Section: Links -->
+
+      <hr class="my-3">
+
+      <!-- Section: Copyright -->
+      <section class="p-3 pt-0">
+        <div class="row d-flex align-items-center">
+          <!-- Grid column -->
+          <div class="col-md-7 col-lg-7 text-center text-md-start d-flex justify-content-between ">
+            <!-- Copyright -->
+            <div class="p-3">
+              © 2023 Copyright:
+              <a class="text-white text-decoration-none" href="http://127.0.0.1:8000/"
+                 >Gogrocery.com</a
+                >
+            </div>
+            <div class="p-3">
+              Payment methods:
+              <a class="text-white text-decoration-none" href="https://razorpay.com/"
+                 >Razorpay</a
+                >
+            </div>
+            <!-- Copyright -->
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-5 col-lg-5 ml-lg-0 text-center text-md-end">
+            <!-- Facebook -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-facebook-f"></i
+              ></a>
+
+            <!-- Twitter -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-twitter"></i
+              ></a>
+
+            <!-- Google -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-google"></i
+              ></a>
+
+            <!-- Instagram -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-instagram"></i
+              ></a>
+          </div>
+          <!-- Grid column -->
+        </div>
+      </section>
+      <!-- Section: Copyright -->
+    </div>
+    <!-- Grid container -->
+  </footer>
+  <!-- Footer -->
 {% endblock footer %}
 

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.views import View
 import razorpay
 
-from .models import Cart, Category, Customer, OrderPlaced, Payment,SubCategory,Product, Wishlist
+from .models import STATE_CHOICES, Cart, Category, Customer, OrderPlaced, Payment,SubCategory,Product, Wishlist
 from .forms import CustomerRegistrationForm, CustomerProfileForm, EditUserProfileForm
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -23,6 +23,7 @@ def home(request):
     subcategory = SubCategory.objects.all()
    # num = Product.objects.exclude(sub_category=None)
     product = Product.objects.all()
+    states = STATE_CHOICES
     return render(request, "baseapp/home.html",locals())
 
 
