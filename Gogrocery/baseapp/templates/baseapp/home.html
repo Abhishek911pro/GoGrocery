@@ -47,13 +47,17 @@
 </div>
 {% endblock information %}
 
+
 {% block barndcards %}
+
+
+
 <div class="container d-flex justify-content-around">
-  <div class="card shadow " style="height:150px; width:150px;">
-    <a href="{% url 'brandfilter' 1 %}" class="text-decoration-none text-dark" >
-      <img src={% static 'app/images/product/apple.jpg' %} class="card-img-top " alt="Image" >1
+  <a href="{% url 'brandfilter' 1 %}">
+    <div class="card d-flex justify-content-center align-items-center gradient1-custom" style="width: 150px; height: 150px; border-radius: 50%; box-shadow: inset 0 0 10px white;">
+      <img src={% static 'app/images/product/amul.png' %} class="card-img-top " alt="Image" style="height:50px; width:120px;" >
+    </div>
     </a>
-  </div>
   <div class="card shadow " style="height:150px; width:150px;">
     <a href="{% url 'brandfilter' 2 %}" class="text-decoration-none text-dark">
       <img src={% static 'app/images/product/apple.jpg' %} class="card-img-top" alt="Image">2
@@ -72,8 +76,7 @@
     </a>
   </div>
 </div>
-
-<br><br>
+<br>
 
 {% endblock barndcards %}
 
@@ -85,17 +88,18 @@
 
 {% block home-carousel %}
 {% for category in category %}
-  <h1 class="mx-4">{{category.name}}</h1>
-  <br>
-  <div id="carouselExampleCaptions-{{ category.id }}" class="carousel container carousel-dark slide border border-dark bg-light p-3 rounded" data-bs-ride="false">
-    <div class="carousel-inner ">
+  <div class=" border p-1 gradient1-custom rounded" >
+    <h1 class="ms-3 text-white">{{category.name}}</h1>
+  </div>
+  <div id="carouselExampleCaptions-{{ category.id }}" class="carousel container carousel-dark slide   rounded" data-bs-ride="false">
+    <div class="carousel-inner p-3">
       {% for product in category.product_set.all %}
         {% if forloop.counter0|divisibleby:4 %}
           <div class="carousel-item {% if forloop.first %} active{% endif %}">
             <div class="row ">
         {% endif %}
         <div class="col-sm-3 ">
-          <div class="card border border-dark" style="height: 250px; width: 200px; margin-left:30px;">
+          <div class="card border border-dark shadow" style="height: 250px; width: 200px; margin-left:30px;">
             <img src="{% static 'app/images/product/apple.jpg' %}" class="card-img-top  " style="height: 150px; width: 150px;">
             <div class="card-body">
               <h5 class="card-title">{{product.title}}</h5>
@@ -109,11 +113,11 @@
         {% endif %}
       {% endfor %}
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions-{{ category.id }}" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <button class="carousel-control-prev d-flex justify-content-start" type="button" data-bs-target="#carouselExampleCaptions-{{ category.id }}" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon start-left" aria-hidden="true" ></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions-{{ category.id }}" data-bs-slide="next">
+    <button class="carousel-control-next d-flex justify-content-end" type="button" data-bs-target="#carouselExampleCaptions-{{ category.id }}" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
@@ -135,6 +139,7 @@
         </div>
       </div>
     </div>
+    <br>
     {% elif forloop.counter0 == 2 %}
     <div id="myCarousel" class=" carousel slide container" data-bs-ride="carousel">
       <div class="carousel-inner">
@@ -149,6 +154,7 @@
         </div>
       </div>
     </div>
+    <br>
     {% elif forloop.counter0 == 4 %}
     <div id="myCarousel" class=" carousel slide container" data-bs-ride="carousel">
       <div class="carousel-inner">
@@ -163,6 +169,7 @@
         </div>
       </div>
     </div>
+    <br>
     {% endif %}
   {% endif %}
 {% endfor %}

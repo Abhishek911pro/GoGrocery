@@ -7,29 +7,26 @@
 <div class="container" >
     <div class="row my-1 " >
         <div class="col-sm-5 offset-sm-3 ">
-            <h3 class="text-primary fw-bold">Customer profile</h3>
+            <div class=" border p-1 gradient1-custom rounded shadow" >
+                <h3 class="text-white fw-bold ms-3">Customer profile</h3>
+            </div>
             <hr>
-            <div class="card shadow p-2 bg-light " style="width: 28rem; border-radius:5%;">
+            <div class="card shadow-lg p-2 bg-light " style="width: 28rem; border-radius:5%;">
                 <div class="card-body">
                   <h2 class="card-title">{{request.user.first_name}}&nbsp{{request.user.last_name}}</h2>
                   <hr>
-                  <h5>Username :</h5>
-                  <p class="shadow p-1 border border-primary bg-info text-white fs-5 font-weight-bolder" style="border-radius:3%;">{{request.user.username}}</p>
+                  <h5 class="mb-3" >Username :<span class="ms-3">{{request.user.username}}</span></h5>
                   
-                  <h5>First Name :</h5>
-                  <p class="shadow p-1 border border-primary bg-info text-white fs-5 font-weight-bolder" style="border-radius:3%;">{{request.user.first_name}}</p>
-
-                  <h5>Last Name :</h5>
-                  <p class="shadow p-1 border border-primary bg-info text-white fs-5 font-weight-bolder" style="border-radius:3%;">{{request.user.last_name}}</p>
-
-                  <h5>Email :</h5>
-                  <p class="shadow p-1 border border-primary bg-info text-white fs-5 font-weight-bolder" style="border-radius:3%;">{{request.user.email}}</p>
-
-                  <h5>Date joined :</h5>
-                  <p class="shadow p-1 border border-primary bg-info text-white fs-5 font-weight-bolder" style="border-radius:3%;">{{request.user.date_joined}}</p>
-
-                  <h5>Last login :</h5>
-                  <p class="shadow p-1 border border-primary bg-info text-white fs-5 font-weight-bolder" style="border-radius:3%;">{{request.user.last_login}}</p>
+                  <h5 class="mb-3" >First Name :<span class="ms-3">{{request.user.first_name}}</span></h5>
+                  
+                  <h5 class="mb-3" >Last Name :<span class="ms-3">{{request.user.last_name}}</span></h5>
+                  
+                  <h5 class="mb-3" >Email :<span class="ms-3">{{request.user.email}}</span></h5>
+                  
+                  <h5 class="mb-3" >Date joined :<span class="ms-3">{{request.user.date_joined}}</span></h5>
+                  
+                  <h5 class="mb-3" >Last login :<span class="ms-3">{{request.user.last_login}}</span></h5>
+                  
                   <hr>
                   <span class=" d-flex justify-content-center "><button class="btn btn-success"><a href="{% url 'edit_profile' %}" class="text-decoration-none text-white"> Edit profile</a></button></span>
                 

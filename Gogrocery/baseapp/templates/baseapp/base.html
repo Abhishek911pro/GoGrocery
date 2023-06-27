@@ -23,6 +23,14 @@
     
     
     <style>
+        .card {
+            transition: transform 0.3s ease;
+          }
+        
+          .card:hover {
+            transform: scale(1.05);
+            
+          }
         
         #bg{
             background-size: 1400px 650px;
@@ -41,12 +49,13 @@
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <title>Gogrocery |  {% block title %}  {% endblock title %}</title>
 </head>
-<body id="bg" style="background-image: url('{% static "app/images/bgfix1.jpg"%}');">
+<body id="bg" style="background-image: url('{% static "app/images/bgfix8.jpg"%}');">
  
     <nav class="navbar navbar-expand-lg  navbar-dark bg-light gradient1-custom">
         <div class="container-fluid ">
             <a class="navbar-brand" href="#">
-                <img src="{% static "app/images/Gogrocery_logo.png"%}" height="50" width="150"style="border-radius:10px;"/>
+                <h1>GOGROCERY</h1>
+                {% comment %} <img src="{% static "app/images/Gogrocery_logo.png"%}" height="50" width="150"style="border-radius:10px;"/> {% endcomment %}
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

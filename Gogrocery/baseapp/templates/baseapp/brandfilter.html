@@ -5,23 +5,13 @@
 {% block main-content %}
     <div class="container">
         <div class="row">
-            <div class="col-sm-2">
-             {% comment %}    {% if subcategory %}
-                    <div class="list-group d-flex justify-content-between" style="border:2px solid black;">
-                        {% for i in subcategory %}
-                            <a href="{% url 'subcategory' val1=i.category_id val2=i.id %}" class="list-group-item list-group-item-action" aria-current="true">
-                                {{i.name}}<span class="badge bg-success rounded-pill" style="float:right;">4</span>
-                            </a>
-                            
-                        {% endfor %}
-                        
-                    </div>
-                {% else %}
-                {% endif %}  {% endcomment %}   
-            </div> 
 
+            <div class=" border p-1 gradient1-custom rounded shadow" >
+                <h3 class="text-white fw-bold ms-3">Amul</h3>
+            </div>
+            <hr>
 
-            <div class="col-sm-10">
+            <div class="col-sm-12">
                 <div class="row">
                     {% for prod in filtered_products %}
                     {% comment %} col-md-10 col-lg-4 mb-4 mb-lg-0 {% endcomment %}
