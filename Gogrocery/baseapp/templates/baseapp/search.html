@@ -5,12 +5,16 @@
 {% block main-content %}
 
 <div class="container">
-    <div class="row">
+    <div class=" border p-1 gradient1-custom rounded shadow " >
+        <h3 class="text-white fw-bold ms-3 ">Search Product</h3>
+    </div>
+    <br>
+    <div class="row ">
         <div class="col-sm-12">
             <div class="row">
                 {% for prod in product %}
                 {% comment %} col-md-10 col-lg-4 mb-4 mb-lg-0 {% endcomment %}
-                <div class="col-sm-3 ">
+                <div class="col-sm-3 d-flex justify-content-center mb-5">
                     <div class="row">
                         <div class="card p-1 shadow" style="width: 220px; height: 330px; border:1px solid black;">
                         <a href="{% url 'product-detail' prod.id %}" style="text-decoration:none; color:black;" >

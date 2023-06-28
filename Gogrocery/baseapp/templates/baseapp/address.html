@@ -2,11 +2,13 @@
 {% load static %}
 {% block title %}Address{% endblock title %}
 {% block main-content %}
-<div class="container my-3">
+<div class="container my-1">
+    <div class=" border p-1 gradient1-custom rounded shadow " >
+        <h3 class="text-white fw-bold ms-3 ">Welcome <span class="text-capitalize">{{request.user}}</span></h3>
+    </div>
+    <br>
     <div class="row">
-            <h3>Welcome <span class="text-capitalize">{{request.user}}</span></h3>
-        
-        <div class="col-sm-2 border-end">
+        <div class="col-sm-2 border-dark border-end">
             <ul class="list-unstyled">
                 <li class="d-grad"><a href="{% url 'addadress' %}" class="btn ">Add Address</a></li>
                 <li class="d-grad"><a href="{% url 'address' %}" class="btn btn-primary">show Addresses</a></li>
@@ -17,9 +19,12 @@
             <div class="row">
                 {% for ad in add %}
                     <div class="col-sm-5">
-                        <div class="card m-2">
+                        <div class="card border border-dark shadow m-2">
                             <div class="card-body">
-                                <h3>Address {{forloop.counter}}</h3>
+                                <div class=" border gradient1-custom rounded shadow  ">
+                                    <h3 class="text-white ms-3" >   Address {{forloop.counter}}</h3>
+                                </div>
+                                <br>
                                 <p>Name: {{ad.name}}</p>
                                 <p>Locality: {{ad.locality}}</p>
                                 <p>Mobile: {{ad.mobile}}</p>

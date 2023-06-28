@@ -4,9 +4,12 @@
 
 {% block main-content %}
 
-<div class="container my-3">
+<div class="container my-1">
+    <div class=" border p-1 gradient1-custom rounded shadow " >
+        <h3 class="text-white fw-bold ms-3 ">Welcome <span class="text-capitalize">{{request.user.username}}</span></h3>
+    </div>
+    <br>
     <div class="row">
-        <h3>Welcome {{request.user.username|capfirst}}</h3>
         <div class="col-sm-2 border-end">
             <ul class="list-unstyled">
                 <li class="d-grid"><a href="{% url 'orders' %}" class="btn btn-primary">Orders</a></li>
