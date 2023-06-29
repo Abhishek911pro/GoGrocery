@@ -10,6 +10,10 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.conf import settings
+
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
+from .forms import MyPasswordChangeForm
 # Create your views here.
 
 
@@ -156,6 +160,7 @@ class viewprofile(View):
         if request.user.is_authenticated:
             form= EditUserProfileForm(instance=request.user) 
             return render(request, 'baseapp/viewprofile.html',locals())
+        
     
     
 def edit_profile(request):
@@ -173,6 +178,31 @@ def edit_profile(request):
         else:
             form= EditUserProfileForm(instance=request.user)
         return render(request, 'baseapp/edit_profile.html',locals())
+
+    
+class CustomPasswordChangeView(PasswordChangeView):
+    template_name = 'baseapp/changepassword.html'
+    form_class = MyPasswordChangeForm
+    success_url = reverse_lazy('passwordchangedone')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        totalitem = 0
+        wishitem = 0
+        if self.request.user.is_authenticated:
+            totalitem = len(Cart.objects.filter(user=self.request.user))
+            wishitem = len(Wishlist.objects.filter(user=self.request.user))
+        context['totalitem'] = totalitem
+        context['wishitem'] = wishitem
+        return context
+
+def password_changed_done_view(request):
+    totalitem = 0
+    wishitem = 0
+    if request.user.is_authenticated:
+        totalitem = len(Cart.objects.filter(user=request.user))
+        wishitem = len(Wishlist.objects.filter(user=request.user))
+    return render(request, 'baseapp/passwordchangedone.html',locals())
 
 #mycodeend
 
@@ -432,3 +462,4 @@ def search(request):
     product = Product.objects.filter(Q(title__icontains=query)) #field lookup
     return render(request,"baseapp/search.html",locals())
     
+

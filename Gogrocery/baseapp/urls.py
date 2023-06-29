@@ -6,6 +6,8 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_view
 from .forms import LoginForm, MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
 
+from .views import CustomPasswordChangeView, password_changed_done_view
+
 urlpatterns = [
     path('', views.home,name="home"),
     path("about/", views.about,name="about"),
@@ -43,8 +45,9 @@ urlpatterns = [
     path('registration/',views.CustomerRegistrationView.as_view(), name='customerregistration'),
     #inbuilt login view That's why don't need to write in view file
     path('accounts/login/', auth_view.LoginView.as_view(template_name='baseapp/login.html', authentication_form = LoginForm), name='login'),
-    path('passwordchange/', auth_view.PasswordChangeView.as_view(template_name = 'baseapp/changepassword.html', form_class=MyPasswordChangeForm, success_url='/passwordchangedone'), name='passwordchange'),
-    path('passwordchangedone/', auth_view.PasswordChangeDoneView.as_view(template_name='baseapp/passwordchangedone.html'), name='passwordchangedone'),
+    path('passwordchange/', CustomPasswordChangeView.as_view(), name='passwordchange'),
+    path('passwordchangedone/', password_changed_done_view, name='passwordchangedone'),
+
     path('logout/', auth_view.LogoutView.as_view(next_page='login'), name='logout'),
 
     #password Reset /forgot password
