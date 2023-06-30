@@ -4,15 +4,15 @@
 {% block main-content %}
 
 <div class="container my-3 ">
-    <div class="row">
-        <h3>welcome <span class="text-capitalize">{{request.user}}</span></h3>
+    <div class=" border p-2 gradient1-custom rounded shadow " >
+        <h3 class="text-white fw-bold ms-3 ">Update Address</span></h3>
     </div>
-<br>
+    <br>
     <div class="col-sm-8 offset-sm-1">
         <form action="" method="post" class="shadow p-4 bg-light"style="border-radius:5%">
             {% csrf_token %}
             {% for fm in form %}
-                {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+               <h6>{{fm.label_tag}}</h6>  {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
                 <br>
             {% endfor %}
             <div class="col-12 mt-3">

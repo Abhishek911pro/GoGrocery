@@ -6,10 +6,12 @@
 <div class="container" >
     <div class="row my-1 " >
         <div class="col-sm-5 offset-sm-3 ">
-            <h3 class="text-primary fw-bold">Update Customer profile</h3>
+            <div class=" border p-1 gradient1-custom rounded shadow ">
+                <h3 class="text-white fw-bold ms-3 ">Update Customer profile</h3>
+            </div>
             <hr>
-    
-            <form action="" method="post" class="shadow p-4 bg-light "style="border-radius:5%";>
+            
+            <form action="" method="post" class="shadow p-4 bg-light border border-dark "style="border-radius:5%";>
                 {% csrf_token %}
                 {% for fm in form %}
                     <h5>{{fm.label_tag}}</h5>
@@ -37,8 +39,6 @@
                     {% endfor %}
                 {% endif %}
             </form>
-            
-            
             
             <br><br>
         </div>
