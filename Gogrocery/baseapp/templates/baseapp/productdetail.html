@@ -9,12 +9,16 @@
                 <img src="{% static 'app/images/product/apple.jpg' %}" class="image col-xs-6 col-sm-12 col-lg-12 mt-3 text-sm-center w-100 h-75" alt="">
            </div>
            <div class="productdetail col-lg-5">
-            <div class="card">
+            <div class="card shadow border border-dark ">
                 <div class="card-body ">
-                    <h1 class="card-title" style="font-family: Georgia; font-size: 50px;">{{product.title}}</h1>
+                    <div class=" border p-1  gradient1-custom rounded shadow " >
+                        <h2 class="card-title ms-3 text-white" style="font-family: Georgia; ">{{product.title}}</h2>
+                    </div>
+                <br>    
                 <h5>RS.{{product.discounted_price}}/-</h5>
-                <small class="text-decoration-line-through text-muted fs-5"><del>Rs. {{product.selling_price}}</del></small>/-
-                </br></br><h4>Product Description</h4>
+                <small class="text-decoration-line-through text-danger fs-5 "><del>Rs. {{product.selling_price}}</del></small>/-
+                </br></br>
+                <h4>Product Description</h4>
                 <ul class="fd-5" style="font-family: Rajdhani;">
                     <li>{{product.description}}</li>
                 </ul>
@@ -34,12 +38,12 @@
                 <a href="{% url 'showcart' %}" class="btn btn-warning shadow px-4 py-2 ms-4 ">Buy Now</a>
                 {% if request.user.is_authenticated %}
                     {% if wishlist %}
-                        <a pid={{product.id}} class="minus-wishlist btn btn-danger shadow px-3 py-2 ms-4"><i class="fas fa-heart fa-lg"></i></a>
+                        <a pid={{product.id}} class="minus-wishlist btn btn-danger shadow  py-2 ms-4 rounded-circle"><i class="fas fa-heart fa-lg"></i></a>
                     {% else %}
-                        <a pid={{product.id}} class="plus-wishlist btn btn-success shadow px-3 py-2 ms-4"><i class="fas fa-heart fa-lg"></i></a>
+                        <a pid={{product.id}} class="plus-wishlist btn btn-success shadow  py-2 ms-4 rounded-circle"><i class="fas fa-heart fa-lg"></i></a>
                     {% endif %}
                 {% else %}
-                <a class="plus-wishlist btn btn-success shadow px-3 py-2 ms-4"><i class="fas fa-heart fa-lg"></i></a>
+                <a class="plus-wishlist btn btn-success shadow  py-2 ms-4 rounded-circle"><i class="fas fa-heart fa-lg"></i></a>
                 {% endif %}
             </div>
         </div>

@@ -79,9 +79,9 @@
                     <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
                     <button class="btn btn-outline-primary text-white" type="submit">Search</button>
                 </form>
-            </div>
-            {% if request.user.is_authenticated %}
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                {% if request.user.is_authenticated %}
+            <ul class="navbar-nav  mb-2 mb-lg-0">
                 <li class="nav-item dropdown mx-2">
                     <a class="nav-link dropdown-toggle text-white" 
                     id="profileDropdown" role="button" data-bs-toggle="dropdown"
@@ -113,6 +113,8 @@
                 </li>
             </ul>
                 {% endif %}
+            </div>
+            
                 
             
 
