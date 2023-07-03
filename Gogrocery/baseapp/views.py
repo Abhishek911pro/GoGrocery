@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.views import View
 import razorpay
 
-from .models import STATE_CHOICES, Cart, Category, Customer, OrderPlaced, Payment,SubCategory,Product, Wishlist
+from .models import BRANDS, STATE_CHOICES, Cart, Category, Customer, OrderPlaced, Payment,SubCategory,Product, Wishlist
 from .forms import CustomerRegistrationForm, CustomerProfileForm, EditUserProfileForm
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -58,6 +58,7 @@ class CategoryView(View):
         category = Category.objects.all()
         subcategory = SubCategory.objects.filter(category_id= val)
         product = Product.objects.filter(main_category=val)
+        brands = BRANDS
         #title = SubCategory.objects.filter(category=val).values('title').annotate(total=Count('title'))
         return render(request, "baseapp/category.html",locals())
 
@@ -71,6 +72,7 @@ class SubCategoryView(View):
         category = Category.objects.all()
         subcategory = SubCategory.objects.filter(category_id=val1)
         product = Product.objects.filter(sub_category=val2)
+        brands = BRANDS
         return render(request, "baseapp/subcategory.html",locals())
     
 def brandfilter(request,bno):
@@ -427,6 +429,7 @@ def remove_cart(request):
             'totalamount':totalamount
         }
         return JsonResponse(data)
+    
 
 @login_required    
 def plus_wishlist(request):

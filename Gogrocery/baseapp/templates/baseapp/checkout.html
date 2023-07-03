@@ -11,14 +11,16 @@
             </div>
         {% endfor%}
     {% endif %}
-    <div class="row mt-5">
-        <div class="col-sm-6 shadow p-4 bg-light" style="border-radius:5%">
-            <h4>Order Summary</h4>
-            <hr>
+    <div class="row mt-1">
+        <div class="p-2 gradient1-custom rounded shadow ">
+            <h3 class="text-white fw-bold ms-4">Order Summary</h3>
+        </div>
+        <hr><br>
+        <div class="col-sm-6 shadow  bg-light border rounded">
             {% for item in cart_items %}
                 <div class="card mb-2">
                     <div class="card-body">
-                        <h5>Product: {{item.product.title}}</h5>
+                        <h5 class="p-2 gradient2-custom rounded text-white">Product: {{item.product.title}}</h5>
                         <p>Quantity: {{item.quantity}}</p>
                         <p class="fw-bold">Price: {{item.product.discounted_price}}</p>
                     </div>
@@ -29,7 +31,9 @@
         </div>
         
         <div class="col-sm-4 offset-sm-1" >
-            <h4>Select Shipping Address</h4>
+            <div class="p-2 gradient2-custom rounded shadow ">
+                <h4 class="text-white  ms-4">Select Shipping Address</h4>
+            </div>
             <hr>
             <form method="post" id="myform">
                 {% csrf_token %}

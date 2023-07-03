@@ -71,6 +71,7 @@ $('.remove-cart').click(function(){
             document.getElementById("amount").innerText=data.amount 
             document.getElementById("totalamount").innerText=data.totalamount
             eml.parentNode.parentNode.parentNode.parentNode.remove() 
+            
         }
     })
 })
@@ -105,3 +106,5 @@ $('.minus-wishlist').click(function(){
         }
     })
 })
+
+

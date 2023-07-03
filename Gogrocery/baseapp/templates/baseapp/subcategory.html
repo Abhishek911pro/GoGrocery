@@ -7,6 +7,7 @@
         <div class="row">
             <div class="col-sm-2">
                     <div class="list-group d-flex justify-content-between" style="border:2px solid black;">
+                        <h5 class="list-group-item gradient1-custom text-white" aria-current="true">Products</h5>
                         {% for i in subcategory %}
                             <a href="{% url 'subcategory' val1=i.category_id val2=i.id %}" class="list-group-item list-group-item-action" aria-current="true">
                                 {{i.name}}<span class="badge bg-success rounded-pill" style="float:right;">4</span>
@@ -14,6 +15,17 @@
                             
                         {% endfor %}
                         
+                    </div>
+                    <br>
+                    {% comment %} brand sublist  {% endcomment %}
+                    <div class="list-group d-flex justify-content-between" style="border:2px solid black;">
+                        <h5 class="list-group-item gradient1-custom text-white" aria-current="true">Brands</h5>
+                        {% for i in brands %}
+                            <a href="{% url 'brandfilter' i.1 %}" class="list-group-item list-group-item-action" aria-current="true">
+                                {{i.1}}<span class="badge bg-success rounded-pill" style="float:right;">3</span>
+                            </a>
+                            
+                        {% endfor %}
                     </div>
             </div>
 
