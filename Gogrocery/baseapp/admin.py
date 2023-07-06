@@ -1,12 +1,17 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
-from .models import Cart, Category, Customer, OrderPlaced, Payment,SubCategory,Product, Wishlist
+from .models import Brand, Cart, Category, Customer, OrderPlaced, Payment,SubCategory,Product, Wishlist
 
 # Register your models here.
 admin.site.unregister(Group)
 admin.site.register(Category)
 admin.site.register(SubCategory)
 admin.site.register(Product)
+
+@admin.register(Brand)
+class BrandModelAdmin(admin.ModelAdmin):
+    list_display = ['id','name']
+
 
 @admin.register(Customer)
 class CustomerModelAdmin(admin.ModelAdmin):

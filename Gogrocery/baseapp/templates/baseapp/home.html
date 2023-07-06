@@ -99,10 +99,13 @@
         {% endif %}
         <div class="col-sm-3 ">
           <div class="card border border-dark shadow" style="height: 250px; width: 200px; margin-left:30px;">
-            <img src="{% static 'app/images/product/apple.jpg' %}" class="card-img-top  " style="height: 150px; width: 150px;">
-            <div class="card-body">
-              <h5 class="card-title">{{product.title}}</h5>
-            </div>
+            <a href="{% url 'product-detail' product.id %}" class="stretched-link" style="text-decoration:none; color:black;" >
+              <img src="{% static 'app/images/product/apple.jpg' %}" class="card-img-top  " style="height: 150px; width: 150px;">
+              <div class="card-body">
+                <h5 class="card-title">{{product.title}}</h5>
+                <h6>price :-  {{product.discounted_price}} </h6>
+              </div>
+            </a>
           </div>
         </div>
         {% if forloop.counter0|add:1|divisibleby:4 or forloop.last %}

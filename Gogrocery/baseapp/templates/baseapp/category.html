@@ -8,7 +8,7 @@
             <div class="col-sm-2 col-md-2 col-lg-2">
                 {% if subcategory %}
                     {% comment %} subcategory sublist {% endcomment %}
-                    <div class="list-group d-flex justify-content-between" style="border:2px solid black;">
+                    <div class="list-group d-flex justify-content-between shadow" style="border:2px solid black;">
                         <h5 class="list-group-item gradient1-custom text-white" aria-current="true">Subcategory</h5>
                         {% for i in subcategory %}
                             <a href="{% url 'subcategory' val1=i.category_id val2=i.id %}" class="list-group-item list-group-item-action" aria-current="true">
@@ -18,7 +18,7 @@
                         {% endfor %}
                     </div>
                     <br>
-                    <div class="list-group d-flex justify-content-between" style="border:2px solid black;">
+                    <div class="list-group d-flex justify-content-between shadow" style="border:2px solid black;">
                         <h5 class="list-group-item gradient1-custom text-white" aria-current="true">Brands</h5>
                         {% for i in brands %}
                             <a href="{% url 'brandfilter' i.1 %}" class="list-group-item list-group-item-action" aria-current="true">
@@ -70,8 +70,13 @@
                                 <div class="d-flex justify-content-center " style=" ">
                                     <form action="/add-to-cart" class="d-inline">
                                         <input type="hidden" name="prod_id" value={{prod.id}} />
-                                        <button type="submit" class=" btn btn-primary " style="width:220px; border-radius:25px 0px 25px 0px; box-shadow: inset 3px 1px 4px white;">Add to cart</button>
+                                        <button type="submit" class=" btn btn-primary " >Add to cart</button>
                                     </form>
+                                    <form action="/add-to-cart" class="d-inline">
+                                        <input type="hidden" name="prod_id" value={{prod.id}} />
+                                        <button type="submit" class=" btn btn-primary " >Buy Now</button>
+                                    </form>
+                                    {% comment %}add to cart css----- style="width:220px; border-radius:25px 0px 25px 0px; box-shadow: inset 3px 1px 4px white;" {% endcomment %}
                                     {% comment %} <a href="#!!" class="" ><button class="btn btn-primary " style="width:220px; border-radius:25px 0px 25px 0px;" ><i class="fa fa-shopping-cart" aria-hidden="true" style="color:white;"></i> Add to cart</button></a> {% endcomment %}
                                 </div>
                             </div> 

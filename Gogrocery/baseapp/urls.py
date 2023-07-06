@@ -23,6 +23,8 @@ urlpatterns = [
     path('address/', views.address, name='address'),
     path('updateAddress/<int:pk>', views.updateAddress.as_view(), name='updateAddress'),
     path('deleteAddress/<int:pk>', views.deleteAddress, name='deleteAddress'),
+    # buy now
+    
     # add to cart
     path('add-to-cart/', views.add_to_cart, name='add-to-cart'),
     path('cart/', views.show_cart, name='showcart'),

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'baseapp',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,8 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 RAZOR_KEY_ID = "rzp_test_8mePImxF5Ff2b3"
 RAZOR_KEY_SECRET = "utLPHfklOvi0zO5bUKwy9EIX"
+
+GRAPH_MODELS ={
+'all_applications': True,
+'graph_models': True,
+}
