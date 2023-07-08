@@ -137,4 +137,4 @@ RAZOR_KEY_SECRET = "utLPHfklOvi0zO5bUKwy9EIX"
 GRAPH_MODELS ={
 'all_applications': True,
 'graph_models': True,
-}
+} 

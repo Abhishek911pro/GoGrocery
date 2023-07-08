@@ -38,14 +38,14 @@
                         <div class="row d-flex justify-content-center">
                             <div class="card p-1 shadow " style="width: 220px; height: 330px; border:1px solid black;">
                             <a href="{% url 'product-detail' prod.id %}" style="text-decoration:none; color:black;" >
-                                <div class="d-flex justify-content-between p-2">
-                                    <p class="text-danger lead mb-0">brand</p>
-                                </div>
-                                {% comment %}  {% endcomment %}
-                                <img src="{% static 'app/images/product/apple.jpg' %}" class="card-img-top " alt="Laptop" height="130px" width="100px"/>
+                                
                             </a>     
-                                <div class="card-body">
+                                <div class="card-body bg-white border shadow ">
                             <a href="{% url 'product-detail' prod.id %}" style="text-decoration:none; color:black;" >        
+                                <div class="d-flex justify-content-between">
+                                    <p class="text-danger  mb-0 ">brand</p>
+                                </div>
+                                <img src="{% static 'app/images/product/apple.jpg' %}" class="card-img-top " alt="Laptop" height="130px" width="100px"/>
                                     <div class="d-flex justify-content-between">
                                     <p class="small text-muted ">1kg</p>
                                     <p class="small text-danger ">Rs.<s class=" text-danger text-decoration-line-through">{{prod.selling_price}}</s></p>
@@ -55,11 +55,21 @@
                                     <h6 class="mb-0">{{prod.title}}</h6>
                                     <h5 class="text-dark mb-0">Rs.{{prod.discounted_price}}</h5>
                                     </div>
-                            </a>       
-                                </div>  
-                                <div class="d-flex justify-content-center ">
-                                    <a href="#!!" class="" ><button class="btn btn-primary " style="width:220px; border-radius:25px 0px 25px 0px;" ><i class="fa fa-shopping-cart" aria-hidden="true" style="color:white;"></i> Add to cart</button></a>
+                            </a> 
+                                    
+                                    <div class="d-flex justify-content-between align-items-center pb-2 mb-1" style=" ">
+                                        <form action="/add-to-cart" class="d-inline">
+                                            <input type="hidden" name="prod_id" value={{prod.id}} />
+                                            <button type="submit" class=" btn btn-primary " style="width: 130px;  border-radius:25px 0px 0px 25px; box-shadow: inset 0px 0px 4px white;"><i class="fa fa-shopping-cart" aria-hidden="true" style="color:white;"></i> Add item</button>
+                                        </form>
+                                          
+                                        <button class="btn btn-success " style="width: 100px; border-radius:0px 25px 25px 0px; box-shadow: inset 0px 0px 4px yellow;"><a href="{% url 'buynow' prod.id %}" class="text-white text-decoration-none ">Buy</a></button>
+                                        {% comment %}add to cart css----- style="width:220px; border-radius:25px 0px 25px 0px; box-shadow: inset 3px 1px 4px white; box-shadow: 0 0 5px blue;" {% endcomment %}
+                                        {% comment %} <a href="#!!" class="" ><button class="btn btn-primary " style="width:220px; border-radius:25px 0px 25px 0px;" ><i class="fa fa-shopping-cart" aria-hidden="true" style="color:white;"></i> Add to cart</button></a> {% endcomment %}
+                                    </div>
+
                                 </div>
+                                  
                             </div> 
                         </div> 
                         <br><br> 

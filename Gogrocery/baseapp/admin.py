@@ -6,7 +6,10 @@ from .models import Brand, Cart, Category, Customer, OrderPlaced, Payment,SubCat
 admin.site.unregister(Group)
 admin.site.register(Category)
 admin.site.register(SubCategory)
-admin.site.register(Product)
+
+@admin.register(Product)
+class ProductModelAdmin(admin.ModelAdmin):
+    list_display = ['id','title','discounted_price','main_category','product_image']
 
 @admin.register(Brand)
 class BrandModelAdmin(admin.ModelAdmin):

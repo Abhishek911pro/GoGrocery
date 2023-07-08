@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row flex justify-content-between">
            <div class="img2 col-lg-5 ">
-                <img src="{% static 'app/images/product/apple.jpg' %}" class="image col-xs-6 col-sm-12 col-lg-12 mt-3 text-sm-center w-100 h-75" alt="">
+                <img src="{{product.product_image.url}}" class="image col-xs-6 col-sm-12 col-lg-12 mt-3 text-sm-center w-100 h-75" alt="">
            </div>
            <div class="productdetail col-lg-5">
             <div class="card shadow border border-dark ">
@@ -31,10 +31,12 @@
                     <li>{{product.benefits}}</li>
                 </ul>
                 {% comment %} in this form prod_id is send to add-to-cart url and the add_to_cart view get prod_id usign request.Get.get(prod_id) {% endcomment %}
+                
                 <form action="/add-to-cart" class="d-inline">
                     <input type="hidden" name="prod_id" value={{product.id}} />
                     <button type="submit" class=" btn btn-primary shadow px-4 py-2 ">Add to cart</button>
                 </form>
+                
                 <a href="{% url 'showcart' %}" class="btn btn-warning shadow px-4 py-2 ms-4 ">Buy Now</a>
                 {% if request.user.is_authenticated %}
                     {% if wishlist %}

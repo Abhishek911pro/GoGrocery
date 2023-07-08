@@ -48,7 +48,7 @@ class Product(models.Model):
     brands = models.ForeignKey(Brand,on_delete=models.CASCADE,null=True,blank=True)
     product_image = models.ImageField(upload_to='product',blank=True)
     def __str__(self):
-        return self.title +" ----- "+ str(self.sub_category)
+        return str(self.id) +" ----- "+ self.title +" ----- "+ str(self.sub_category)
 
 class Customer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

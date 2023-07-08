@@ -17,6 +17,15 @@
         </div>
         <hr><br>
         <div class="col-sm-6 shadow  bg-light border rounded">
+            {% if product %}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="p-2 gradient2-custom rounded text-white">Product: {{product.title}}</h5>
+                        <p>Quantity: 1</p>
+                        <p class="fw-bold">Price: {{product.discounted_price}}</p>
+                    </div>
+                </div>
+            {% endif %}
             {% for item in cart_items %}
                 <div class="card mb-2">
                     <div class="card-body">
@@ -55,10 +64,10 @@
                 {% endfor %}
                 <div class="form-check mb-3 shadow p-4 bg-light"  style="border-radius:5%">
                     <label for="totamount" class="form-label">Total Amount</label>
-                    <input type="number" class="form-control" name="totamount" value={{totalamount}} readonly>
+                    <input type="number" class="form-control text-dark" name="totamount" value={{totalamount}} readonly>
                     <div class="text-end ">
                         {% comment %} <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button> {% endcomment %}
-                        <button id="rzp-button1" type="submit" class="btn btn-warning mt-3 px-5 fw-bold shadow">Payment</button>
+                        <button id="rzp-button1" type="submit" class="btn btn-warning mt-3 px-5 fw-bold shadow"><a href="#"></a> Payment</button>
                     </div>
                 </div>
                 

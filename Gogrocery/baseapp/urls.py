@@ -24,7 +24,7 @@ urlpatterns = [
     path('updateAddress/<int:pk>', views.updateAddress.as_view(), name='updateAddress'),
     path('deleteAddress/<int:pk>', views.deleteAddress, name='deleteAddress'),
     # buy now
-    
+    path('buynow/<int:pk>', views.buynow, name='buynow'),
     # add to cart
     path('add-to-cart/', views.add_to_cart, name='add-to-cart'),
     path('cart/', views.show_cart, name='showcart'),
@@ -62,7 +62,7 @@ urlpatterns = [
     #  path('test/<int:pk>',views.probymcate.as_view(),name="probymcate"),
     # path('test/1', views.fill),
       
-]
+]+static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
 
 admin.site.site_header = "Gogrocery"
 admin.site.site_title = "Gogrocery"

@@ -274,6 +274,8 @@ def add_to_cart(request):
         Cart(user = user,product=product).save()
     return redirect("/cart")
 
+
+
 @login_required    
 def show_cart(request):
     totalitem = 0
@@ -291,6 +293,27 @@ def show_cart(request):
     return render(request, 'baseapp/addtocart.html',locals())
 
 @login_required
+def buynow(request,pk):
+    totalitem = 0
+    wishitem = 0
+    if request.user.is_authenticated:
+        totalitem = len(Cart.objects.filter(user=request.user))
+        wishitem = len(Wishlist.objects.filter(user=request.user))
+    user = request.user
+    # product_id = request.GET.get('prod_id')
+    product = Product.objects.get(id=pk)
+
+    cart = Cart.objects.filter(user=user, product=product).first()
+    if cart:
+        # If the product is already in the cart, update the quantity
+        cart.quantity += 1
+        cart.save()
+    else:
+        # If the product is not in the cart, add it to the cart
+        Cart(user = user,product=product).save()
+    return redirect("/checkout")
+
+@login_required
 def show_wishlist(request):
     user = request.user
     totalitem = 0
@@ -300,6 +323,9 @@ def show_wishlist(request):
         wishitem = len(Wishlist.objects.filter(user=request.user))
     product = Wishlist.objects.filter(user=user)
     return render(request,"baseapp/wishlist.html",locals())
+
+
+
 
 class checkout(View):
     def get(self,request):
@@ -321,7 +347,7 @@ class checkout(View):
 
         data = { "amount": razoramount, "currency": "INR", "receipt": "order_rcptid_12" }
         payment_response = client.order.create(data=data)
-        print(payment_response)
+        #print(payment_response)
         # {'id': 'order_M2fzVreqWqkoYO', 'entity': 'order', 'amount': 19500, 'amount_paid': 0, 'amount_due': 19500, 'currency': 'INR', 'receipt': 'order_rcptid_12', 'offer_id': None, 'status': 'created', 'attempts': 0, 'notes': [], 'created_at': 1686934864}
         order_id = payment_response['id']
         order_status = payment_response['status']
@@ -334,10 +360,12 @@ class checkout(View):
             )
             
             payment.save()
+        flag = 0
         return render(request, 'baseapp/checkout.html',locals())
 
 @login_required    
 def payment_done(request):
+
     order_id = request.GET.get('order_id')
     payment_id = request.GET.get('payment_id')
     cust_id = request.GET.get('cust_id')
