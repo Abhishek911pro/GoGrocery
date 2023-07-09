@@ -12,7 +12,7 @@
                         <h5 class="list-group-item gradient1-custom text-white" aria-current="true">Subcategory</h5>
                         {% for i in subcategory %}
                             <a href="{% url 'subcategory' val1=i.category_id val2=i.id %}" class="list-group-item list-group-item-action" aria-current="true">
-                                {{i.name}}<span class="badge bg-success rounded-pill" style="float:right;">4</span>
+                                {{i.name}}<span class="badge bg-success rounded-pill" style="float:right;">{{subprod_count}}</span>
                             </a>
                             
                         {% endfor %}
@@ -31,14 +31,16 @@
                     </div>
                 {% else %}
                     {% comment %} brand sublist  {% endcomment %}
-                    <div class="list-group d-flex justify-content-between" style="border:2px solid black;">
+                    <div class="list-group d-flex justify-content-between" style="height: 35%; border:2px solid black;">
                         <h5 class="list-group-item gradient1-custom text-white" aria-current="true">Brands</h5>
-                        {% for i in brands %}
-                            <a href="{% url 'brandfilter' i.1 %}" class="list-group-item list-group-item-action" aria-current="true">
-                                {{i.1}}<span class="badge bg-success rounded-pill" style="float:right;">3</span>
-                            </a>
-                            
-                        {% endfor %}
+                        <div class="example rounded" style="overflow-y: auto; ">
+                            {% for i in brand %}
+                                <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                                    {{i.name}}<span class="badge bg-success rounded-pill" style="float:right;">3</span>
+                                </a>
+                                
+                            {% endfor %}
+                        </div>  
                     </div>
                 {% endif %}
             </div>
@@ -56,7 +58,7 @@
                                 <div class="card-body bg-white border shadow ">
                             <a href="{% url 'product-detail' prod.id %}" style="text-decoration:none; color:black;" >        
                                 <div class="d-flex justify-content-between">
-                                    <p class="text-danger  mb-0 ">brand</p>
+                                    <p class="text-danger  mb-0 ">{{prod.brands}}</p>
                                 </div>
                                 <img src="{{prod.product_image.url}}" class="card-img-top" alt="Laptop" height="130px" width="130px"/>
                                     <div class="d-flex justify-content-between">

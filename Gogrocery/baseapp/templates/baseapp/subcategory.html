@@ -18,14 +18,16 @@
                     </div>
                     <br>
                     {% comment %} brand sublist  {% endcomment %}
-                    <div class="list-group d-flex justify-content-between" style="border:2px solid black;">
+                    <div class="list-group d-flex justify-content-between" style="height: 25%; border:2px solid black;">
                         <h5 class="list-group-item gradient1-custom text-white" aria-current="true">Brands</h5>
-                        {% for i in brands %}
-                            <a href="{% url 'brandfilter' i.1 %}" class="list-group-item list-group-item-action" aria-current="true">
-                                {{i.1}}<span class="badge bg-success rounded-pill" style="float:right;">3</span>
-                            </a>
-                            
-                        {% endfor %}
+                        <div class="example rounded" style="overflow-y: auto; ">
+                            {% for i in brand %}
+                                <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                                    {{i.name}}<span class="badge bg-success rounded-pill" style="float:right;">3</span>
+                                </a>
+                                
+                            {% endfor %}
+                    </div>
                     </div>
             </div>
 
@@ -45,7 +47,7 @@
                                 <div class="d-flex justify-content-between">
                                     <p class="text-danger  mb-0 ">brand</p>
                                 </div>
-                                <img src="{% static 'app/images/product/apple.jpg' %}" class="card-img-top " alt="Laptop" height="130px" width="100px"/>
+                                <img src="{{prod.product_image.url}}" class="card-img-top " alt="Laptop" height="130px" width="100px"/>
                                     <div class="d-flex justify-content-between">
                                     <p class="small text-muted ">1kg</p>
                                     <p class="small text-danger ">Rs.<s class=" text-danger text-decoration-line-through">{{prod.selling_price}}</s></p>
