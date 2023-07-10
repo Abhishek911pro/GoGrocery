@@ -58,8 +58,36 @@ class CategoryView(View):
         category = Category.objects.all()
         subcategory = SubCategory.objects.filter(category_id= val)
         product = Product.objects.filter(main_category=val)
+        
+        #sublist badge count
+        subcateCount = SubCategory.objects.filter(category_id= val).count()
+        #getting the name of subcategory in a list
+        namelist = []
+        for j in subcategory:
+            namelist.append(j.name)
+        #counting the number of products in each subcategory and putting it in a list
+        pcounts = []
+        for i in subcategory:
+            prodcount = Product.objects.filter(sub_category_id = i.id).count()
+            pcounts.append(prodcount)
+        #merging both lists
+        sublist = [[x, y] for x, y in zip(namelist, pcounts)]
+        
+        #for brand sublist
         brand = Brand.objects.all()
-        #title = SubCategory.objects.filter(category=val).values('title').annotate(total=Count('title'))
+
+        #getting the name of subcategory in a list
+        brandnamelist = []
+        for j in brand:
+            brandnamelist.append(j.name)
+        #counting products is brands
+        bprod = []
+        for i in brand:
+            countprod = Product.objects.filter(brands_id = i.id).count()
+            bprod.append(countprod)
+        #merging both lists
+        brandlist = [[x, y] for x, y in zip(brandnamelist, bprod)]
+
         return render(request, "baseapp/category.html",locals())
 
 class SubCategoryView(View):
@@ -72,7 +100,38 @@ class SubCategoryView(View):
         category = Category.objects.all()
         subcategory = SubCategory.objects.filter(category_id=val1)
         product = Product.objects.filter(sub_category=val2)
+
+        #sublist badge count
+        #count product for subcategory list
+        subcateCount = SubCategory.objects.filter(category_id= val1).count()
+        #getting the name of subcategory in a list
+        namelist = []
+        for j in subcategory:
+            namelist.append(j.name)
+        #counting the number of products in each subcategory and putting it in a list
+        pcounts = []
+        for i in subcategory:
+            prodcount = Product.objects.filter(sub_category_id = i.id).count()
+            pcounts.append(prodcount)
+        #merging both lists
+        sublist = [[x, y] for x, y in zip(namelist, pcounts)]
+        
+        #for brand sublist
         brand = Brand.objects.all()
+
+        #getting the name of subcategory in a list
+        brandnamelist = []
+        for j in brand:
+            brandnamelist.append(j.name)
+        #counting products is brands
+        bprod = []
+        for i in brand:
+            countprod = Product.objects.filter(brands_id = i.id).count()
+            bprod.append(countprod)
+        #merging both lists
+        brandlist = [[x, y] for x, y in zip(brandnamelist, bprod)]
+
+
         return render(request, "baseapp/subcategory.html",locals())
     
 def brandfilter(request,bno):
@@ -81,6 +140,7 @@ def brandfilter(request,bno):
     if request.user.is_authenticated:
         totalitem = len(Cart.objects.filter(user=request.user))
         wishitem = len(Wishlist.objects.filter(user=request.user))
+    bname =  Brand.objects.filter(id=bno)   
     filtered_products = Product.objects.filter(brands=bno)
     return render(request, "baseapp/brandfilter.html",locals())
 
