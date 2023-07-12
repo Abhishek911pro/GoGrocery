@@ -9,44 +9,45 @@
                 <img src="{{product.product_image.url}}" class="image col-xs-6 col-sm-12 col-lg-12 mt-3 text-sm-center w-100 h-75" alt="">
            </div>
            <div class="productdetail col-lg-5">
-            <div class="card shadow border border-dark ">
-                <div class="card-body ">
-                    <div class=" border p-1  gradient1-custom rounded shadow " >
-                        <h2 class="card-title ms-3 text-white" style="font-family: Georgia; ">{{product.title}}</h2>
-                    </div>
-                <br>    
-                <h5>RS.{{product.discounted_price}}/-</h5>
-                <small class="text-decoration-line-through text-danger fs-5 "><del>Rs. {{product.selling_price}}</del></small>/-
-                </br></br>
-                <h4>Product Description</h4>
-                <ul class="fd-5" style="font-family: Rajdhani;">
-                    <li>{{product.description}}</li>
-                </ul>
-                <h4>Pack size</h4>
-                <ul class="fd-5" style="font-family: Rajdhani;">
-                    <li>{{product.other_info}}</li>
-                </ul>
-                <h4>Product Benefits</h4>
-                <ul class="fd-5" style="font-family: Rajdhani;">
-                    <li>{{product.benefits}}</li>
-                </ul>
-                {% comment %} in this form prod_id is send to add-to-cart url and the add_to_cart view get prod_id usign request.Get.get(prod_id) {% endcomment %}
-                
-                <form action="/add-to-cart" class="d-inline">
-                    <input type="hidden" name="prod_id" value={{product.id}} />
-                    <button type="submit" class=" btn btn-primary shadow px-4 py-2 ">Add to cart</button>
-                </form>
-                
-                <a href="{% url 'showcart' %}" class="btn btn-warning shadow px-4 py-2 ms-4 ">Buy Now</a>
-                {% if request.user.is_authenticated %}
-                    {% if wishlist %}
-                        <a pid={{product.id}} class="minus-wishlist btn btn-danger shadow  py-2 ms-4 rounded-circle"><i class="fas fa-heart fa-lg"></i></a>
-                    {% else %}
-                        <a pid={{product.id}} class="plus-wishlist btn btn-success shadow  py-2 ms-4 rounded-circle"><i class="fas fa-heart fa-lg"></i></a>
-                    {% endif %}
-                {% else %}
-                <a class="plus-wishlist btn btn-success shadow  py-2 ms-4 rounded-circle"><i class="fas fa-heart fa-lg"></i></a>
-                {% endif %}
+                <div class="card shadow border border-dark ">
+                    <div class="card-body ">
+                        <div class=" border p-1  gradient1-custom rounded shadow " >
+                            <h2 class="card-title ms-3 text-white" style="font-family: Georgia; ">{{product.title}}</h2>
+                        </div>
+                        <br>
+                        <h5 class="fs-4" style="display: inline-block;">RS.{{product.discounted_price}}/-</h5>
+                        <small class="text-decoration-line-through text-danger fs-5 small "><del>Rs. {{product.selling_price}}</del></small>/-
+                        </br><br>
+
+                        {% comment %} in this form prod_id is send to add-to-cart url and the add_to_cart view get prod_id usign request.Get.get(prod_id) {% endcomment %}
+                        
+                        <form action="/add-to-cart" class="d-inline">
+                            <input type="hidden" name="prod_id" value={{product.id}} />
+                            <button type="submit" class=" btn btn-primary shadow px-4  ">Add to cart</button>
+                        </form>
+                        
+                        <a href="{% url 'showcart' %}" class="btn btn-warning shadow px-4  ms-4 ">Buy Now</a>
+                        {% if request.user.is_authenticated %}
+                            {% if wishlist %}
+                                <a pid={{product.id}} class="minus-wishlist btn btn-danger shadow  py-2 ms-4 rounded-circle"><i class="fas fa-heart fa-lg"></i></a>
+                            {% else %}
+                                <a pid={{product.id}} class="plus-wishlist btn btn-success shadow  py-2 ms-4 rounded-circle"><i class="fas fa-heart fa-lg"></i></a>
+                            {% endif %}
+                        {% else %}
+                        <a class="plus-wishlist btn btn-success shadow  py-2 ms-4 rounded-circle"><i class="fas fa-heart fa-lg"></i></a>
+                        {% endif %}
+                        <br><br>
+                        <h4>Product Description</h4>
+                        <ul class="fd-5" style="font-family: Rajdhani;">
+                            <li>{{product.description}}</li>
+                        </ul>
+                        <h4>Pack size</h4>
+                        <ul class="fd-5" style="font-family: Rajdhani;">
+                            <li>{{product.pack_size}}</li>
+                        </ul>
+                        
+                    </div>    
+                </div>
             </div>
         </div>
     </div>
