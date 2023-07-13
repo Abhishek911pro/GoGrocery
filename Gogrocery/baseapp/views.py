@@ -37,6 +37,7 @@ def about(request):
     if request.user.is_authenticated:
         totalitem = len(Cart.objects.filter(user=request.user))
         wishitem = len(Wishlist.objects.filter(user=request.user))
+    brand = Brand.objects.all()
     return render(request, "baseapp/about.html",locals())
 
 def contact(request):
@@ -455,6 +456,7 @@ def orders(request):
         totalitem = len(Cart.objects.filter(user=request.user))
         wishitem = len(Wishlist.objects.filter(user=request.user))
     order_placed = OrderPlaced.objects.filter(user=request.user)
+    
     return render(request, 'baseapp/orders.html',locals())
 
 @login_required

@@ -10,23 +10,73 @@
         <h2 class="text-center">About Us</h2>
         <br>
         <div class="row container">
-            <p class="fs-4 text-center">GOgrocery’ is a low-cost online general store that gets items crosswise over classifications like grocery, natural products and vegetables, excellence and health, family unit care, infant care, pet consideration, and meats and fish conveyed to your doorstep.
-
-                Browse more than 5,000 items at costs lower than markets each day!
-                
-                Calendar conveyance according to your benefit.
-                
-                Level 20% cashback on your first request with coupon code ‘GOgrocery’ 20. Max cashback is Rs.250.
+            <p class="fs-4 text-center">
+                Welcome to our grocery shopping site! We are thrilled to have you here and provide 
+                you with a convenient and hassle-free way to shop for all your grocery needs.
             </p>
-
         </div>
-        <br><br>
-        <h2 class="text-center">Missions</h2>
+        <br>
+        <div>
+            
+            <p class="fs-4 text-center">
+                At Gogrocery, our mission is to make groceryshopping a seamless experience for our customers. 
+                We understand that your time is valuable, and that's why we have curated a wide range of 
+                high-quality products, ensuring you have access to all your favorite brands and essentials in one place.
+                With our user-friendly website and mobile app, you can easily browse through our 
+                extensive selection of fresh produce, pantry staples, dairy products, beverages, 
+                snacks, and much more. We are committed to offering only the finest quality items, 
+                sourced from trusted suppliers and local farmers, so you can be confident in the 
+                freshness and taste of everything you purchase.
+            </p>
+            <p class="fs-4 text-center">
+                We also believe in providing exceptional customer service. Our dedicated team is 
+                always ready to assist you with any queries or concerns you may have. 
+                Whether it's helping you find a specific product, providing nutritional information,
+                or offering personalized recommendations, we strive to go above and beyond to 
+                ensure your satisfaction.
+            </p>
+            <p class="fs-4 text-center">
+                In addition to convenience and quality, we also prioritize affordability. 
+                We regularly offer competitive prices, discounts, and promotions to help you 
+                save on your grocery expenses. Our goal is to make healthy and delicious food 
+                accessible to everyone, without compromising on value.
+            </p>
+             <p class="fs-4 text-center">
+                At Gogrocery, we value sustainability and are committed to reducing our 
+                environmental impact. We actively promote eco-friendly practices such as 
+                using minimal packaging, supporting local and organic products, and partnering
+                with organizations that focus on food waste reduction.
+             </p>   
+             <p class="fs-4 text-center">
+                We are constantly working towards improving our services and expanding our product
+                range to cater to your evolving needs. Your feedback is invaluable to us, so please
+                don't hesitate to share your suggestions or ideas with us.
+             </p>
+             <p class="fs-4 text-center">
+                Thank you for choosing Gogrocery as your preferred grocery shopping destination. 
+                We look forward to serving you and providing you with an exceptional shopping experience. 
+             </p> 
+             <p class="fs-4 text-center">
+                Happy shopping!
+            </p> 
+        </div>
+        <br>
+        <br>
+        <h2 class="text-center">Collaborated Brands</h2>
         <br>
         <div class="row container">
             <p class="fs-4 text-center">GOgrocery’ We build Class A commercial office buildings for high-end tenants in the Greater Boston area, using our proprietary management system to deliver projects to specifications on time and on budget. 
             </p>
         </div>
+        <div class="">
+            {% for i in brand %}
+            {% if i.product_image %}
+                <img src="{{i.product_image.url}}" class="m-4" style="height:100px; width:200px; float:left ">
+                
+            {% endif %}
+        {% endfor %}
+        </div>
+        
 
     </div>
     <br><br><br>

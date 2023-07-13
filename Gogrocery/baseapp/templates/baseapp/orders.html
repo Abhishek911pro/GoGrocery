@@ -20,7 +20,7 @@
             {% for op in order_placed %}
                 <div class="row shadow p-2 bg-light border border-dark rounded">
                     <div class="col-sm-2 border border-2 border-dark rounded">
-                        <img src="{% static 'app/images/product/apple.jpg' %}" class="img-fluid" height="100" width="100"/>
+                        <img src="{{op.product.product_image.url}}" class="img-fluid" height="100" width="100"/>
                     </div>
                     <div class="col-sm-7">
                         <h6 >Product : {{op.product.title}}</h6>
