@@ -3,12 +3,14 @@
 {% block title %}About{% endblock title %}
 
 
-
 {% block main-content %}
     <div class="container mt-3">
         <br>
-        <h2 class="text-center">About Us</h2>
+        <div class=" border p-1 gradient1-custom rounded shadow ">
+            <h2 class="text-center text-white fw-bold ms-3 ">About Us</h2>
+        </div>
         <br>
+        
         <div class="row container">
             <p class="fs-4 text-center">
                 Welcome to our grocery shopping site! We are thrilled to have you here and provide 
@@ -16,10 +18,10 @@
             </p>
         </div>
         <br>
+
         <div>
-            
             <p class="fs-4 text-center">
-                At Gogrocery, our mission is to make groceryshopping a seamless experience for our customers. 
+                At <strong>Gogrocery</strong>, our mission is to make groceryshopping a seamless experience for our customers. 
                 We understand that your time is valuable, and that's why we have curated a wide range of 
                 high-quality products, ensuring you have access to all your favorite brands and essentials in one place.
                 With our user-friendly website and mobile app, you can easily browse through our 
@@ -42,7 +44,7 @@
                 accessible to everyone, without compromising on value.
             </p>
              <p class="fs-4 text-center">
-                At Gogrocery, we value sustainability and are committed to reducing our 
+                At <strong>Gogrocery</strong>, we value sustainability and are committed to reducing our 
                 environmental impact. We actively promote eco-friendly practices such as 
                 using minimal packaging, supporting local and organic products, and partnering
                 with organizations that focus on food waste reduction.
@@ -53,7 +55,7 @@
                 don't hesitate to share your suggestions or ideas with us.
              </p>
              <p class="fs-4 text-center">
-                Thank you for choosing Gogrocery as your preferred grocery shopping destination. 
+                Thank you for choosing <strong>Gogrocery</strong> as your preferred grocery shopping destination. 
                 We look forward to serving you and providing you with an exceptional shopping experience. 
              </p> 
              <p class="fs-4 text-center">
@@ -65,19 +67,16 @@
         <h2 class="text-center">Collaborated Brands</h2>
         <br>
         <div class="row container">
-            <p class="fs-4 text-center">GOgrocery’ We build Class A commercial office buildings for high-end tenants in the Greater Boston area, using our proprietary management system to deliver projects to specifications on time and on budget. 
+            <p class="fs-4 text-center"><strong>Gogrocery</strong>’ We build Class A commercial office buildings for high-end tenants in the Greater Boston area, using our proprietary management system to deliver projects to specifications on time and on budget. 
             </p>
         </div>
-        <div class="">
+        <div style="height:800px;">
             {% for i in brand %}
-            {% if i.product_image %}
-                <img src="{{i.product_image.url}}" class="m-4" style="height:100px; width:200px; float:left ">
-                
-            {% endif %}
-        {% endfor %}
+                {% if i.product_image %}
+                    <img src="{{i.product_image.url}}" class="m-4" style="height:100px; width:200px; float:left ">
+                {% endif %}
+            {% endfor %}   
         </div>
-        
-
     </div>
-    <br><br><br>
+    
 {% endblock main-content %}

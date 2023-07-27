@@ -24,14 +24,22 @@
                         <p>Quantity: 1</p>
                         <p class="fw-bold">Price: {{product.discounted_price}}</p>
                     </div>
+                    
                 </div>
             {% endif %}
             {% for item in cart_items %}
-                <div class="card mb-2">
+                <div class="card mb-2 ">
                     <div class="card-body">
-                        <h5 class="p-2 gradient2-custom rounded text-white">Product: {{item.product.title}}</h5>
-                        <p>Quantity: {{item.quantity}}</p>
-                        <p class="fw-bold">Price: {{item.product.discounted_price}}</p>
+                        <div class="row">
+                            <div class="col-sm-3 ">
+                                <img src="{{item.product.product_image.url}}" alt="not loaded" srcset="" class="img-fluid img-thumbnail border border-dark shadow" height="150" width="150"/>
+                            </div>
+                            <div class=" col-sm-9 ">
+                                <h5 class="p-2 gradient2-custom rounded text-white">Product: {{item.product.title}}</h5>
+                                <p>Quantity: {{item.quantity}}</p>
+                                <p class="fw-bold">Price: {{item.product.discounted_price}}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             {% endfor %}

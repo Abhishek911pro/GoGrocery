@@ -1,6 +1,8 @@
 {% extends 'baseapp/base.html' %}
 {% load static %}
 {% block title %}Address{% endblock title %}
+
+
 {% block main-content %}
 <div class="container my-1">
     <div class=" border p-1 gradient1-custom rounded shadow " >
@@ -9,10 +11,20 @@
     <br>
     <div class="row">
         <div class="col-sm-2 border-dark border-end">
-            <ul class="list-unstyled">
-                <li class="d-grad"><a href="{% url 'addadress' %}" class="btn ">Add Address</a></li>
-                <li class="d-grad"><a href="{% url 'address' %}" class="btn btn-primary">show Addresses</a></li>
-            </ul>
+            <br>
+                <a href="{% url 'addadress' %}" class="text-decoration-none">
+                    <div class="gradient2-custom p-2 rounded mb-2 cchange shadow">
+                      <h5 class="text-center text-white">Add Address</h5>  
+                    </div>
+                </a>
+                
+                <a href="{% url 'address' %}" class="text-decoration-none">
+                    <div class="gradient2-custom p-2 rounded mb-2 cchange shadow">
+                      <h5 class="text-center text-white">show Addresses</h5>  
+                    </div>
+                </a>
+                <br>
+            <br>
         </div>
 
         <div class="col-sm-10 ">
@@ -42,6 +54,7 @@
                 {% endfor %}
             </div>
         </div>
-
+    </div>
+</div>
 {% endblock main-content %}
 

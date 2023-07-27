@@ -18,11 +18,11 @@
                     <div class="row dflex justify-content-center">
 
                         <div class="card p-1 shadow " style="width: 220px; height: 330px; border:1px solid black;">
-                            <a href="{% url 'product-detail' prod.id %}" style="text-decoration:none; color:black;" >
+                            <a href="{% url 'product-detail' prod.product.id %}" style="text-decoration:none; color:black;" >
                                 
                             </a>     
                             <div class="card-body bg-white border shadow ">
-                            <a href="{% url 'product-detail' prod.id %}" style="text-decoration:none; color:black;" >        
+                            <a href="{% url 'product-detail' prod.product.id %}" style="text-decoration:none; color:black;" >        
                                 <div class="d-flex justify-content-between">
                                     <p class="text-danger  mb-0 ">{% if prod.product.brands %}{{prod.product.brands}} {% else %} <br> {% endif %} </p>
                                 </div>
