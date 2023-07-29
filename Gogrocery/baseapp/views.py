@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from datetime import datetime
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.views import View
@@ -456,8 +457,33 @@ def orders(request):
         totalitem = len(Cart.objects.filter(user=request.user))
         wishitem = len(Wishlist.objects.filter(user=request.user))
     order_placed = OrderPlaced.objects.filter(user=request.user)
-    
+    orderDate = []
+    for i in order_placed:
+        orderDate.append(i.ordered_date.date())
+    orderDate = list(set(orderDate))
     return render(request, 'baseapp/orders.html',locals())
+
+def orderbydate(request, date):
+    totalitem = 0
+    wishitem = 0
+    if request.user.is_authenticated:
+        totalitem = len(Cart.objects.filter(user=request.user))
+        wishitem = len(Wishlist.objects.filter(user=request.user))
+    order_placed = OrderPlaced.objects.filter(user=request.user)
+    orderDate = []
+    for i in order_placed:
+        orderDate.append(i.ordered_date.date())
+    orderDate = list(set(orderDate))
+
+    newOrderplaced = []
+    for i in order_placed:
+        print(date == str(i.ordered_date.date()))
+        if date == str(i.ordered_date.date()):
+            newOrderplaced.append(i)
+
+    return render(request, 'baseapp/orderDate.html',locals())
+
+
 
 @login_required
 def plus_cart(request):

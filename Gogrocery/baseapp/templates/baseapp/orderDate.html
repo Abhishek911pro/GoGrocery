@@ -1,3 +1,4 @@
+
 {% extends 'baseapp/base.html' %}
 {% load static %}
 {% block title %}Orders{% endblock title %}
@@ -10,19 +11,19 @@
     </div>
     <br>
     <div class="row">
-        <div class="col-sm-3  border-end">
-            <div class="list-group d-flex justify-content-between shadow" style="border:2px solid black;">
-                <h3 class="list-group-item gradient1-custom text-white" aria-current="true">Order Date</h3>
-                {% for i in orderDate %}
-                    <a href="{% url 'orderbydate' i %}" class="list-group-item list-group-item-action " aria-current="true">
-                        <h5>{{i}}</h5>
-                    </a>
-                {% endfor %}
-            </div>
+      <div class="col-sm-3  border-end">
+        <div class="list-group d-flex justify-content-between shadow" style="border:2px solid black;">
+            <h3 class="list-group-item gradient1-custom text-white" aria-current="true">Order Date</h3>
+            {% for i in orderDate %}
+                <a href="{% url 'orderbydate' i %}" class="list-group-item list-group-item-action " aria-current="true">
+                    <h5>{{i}}</h5>
+                </a>
+            {% endfor %}
         </div>
+    </div>
 
         <div class="col-sm-8 ms-5">
-            {% for op in order_placed %}
+            {% for op in newOrderplaced %}
                 <div class="row shadow p-2 bg-light border border-dark rounded">
                     <div class="col-sm-2 border border-2 border-dark rounded">
                         <img src="{{op.product.product_image.url}}" class="img-fluid" height="100" width="100"/>

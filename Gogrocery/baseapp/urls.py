@@ -31,6 +31,7 @@ urlpatterns = [
     path('checkout/', views.checkout.as_view(), name='checkout'),
     path('paymentdone/',views.payment_done, name='paymentdone'),
     path('orders/',views.orders, name='orders'),
+    path('orderbydate/<str:date>',views.orderbydate, name='orderbydate'),
 
     path('search/', views.search, name='search'),
     path('wishlist/', views.show_wishlist, name='wishlist'),
