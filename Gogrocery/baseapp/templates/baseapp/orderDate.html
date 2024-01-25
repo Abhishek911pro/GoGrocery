@@ -6,8 +6,9 @@
 {% block main-content %}
 
 <div class="container my-1">
-    <div class=" border p-1 gradient1-custom rounded shadow " >
+    <div class=" border p-1 gradient1-custom rounded shadow d-flex justify-content-between" >
         <h3 class="text-white fw-bold ms-3 ">Welcome <span class="text-capitalize">{{request.user.username}}</span></h3>
+        <h3 class="text-white fw-bold me-3 ">{{date}}</h3>
     </div>
     <br>
     <div class="row">
@@ -25,7 +26,7 @@
         <div class="col-sm-8 ms-5">
             {% for op in newOrderplaced %}
                 <div class="row shadow p-2 bg-light border border-dark rounded">
-                    <div class="col-sm-2 border border-2 border-dark rounded">
+                    <div class="col-sm-2 ">
                         <img src="{{op.product.product_image.url}}" class="img-fluid" height="100" width="100"/>
                     </div>
                     <div class="col-sm-7">

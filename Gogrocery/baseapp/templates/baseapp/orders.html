@@ -24,13 +24,14 @@
         <div class="col-sm-8 ms-5">
             {% for op in order_placed %}
                 <div class="row shadow p-2 bg-light border border-dark rounded">
-                    <div class="col-sm-2 border border-2 border-dark rounded">
+                    <div class="col-sm-2">
                         <img src="{{op.product.product_image.url}}" class="img-fluid" height="100" width="100"/>
+                        
                     </div>
-                    <div class="col-sm-7">
-                        <h6 >Product : {{op.product.title}}</h6>
-                        <h6 >Quantity : {{op.quantity}}</h6>
-                        <h6 >Price : {{op.total_cost}}</h6>
+                    <div class="col-sm-7 ">
+                        <h6 >Product : <span class=" text-danger fw-bold">{{op.product.title}}</span></h6>
+                        <h6 >Quantity : <span class=" text-primary fw-bold">{{op.quantity}}</span></h6>
+                        <h6 >Price : <span class=" text-success fw-bold">{{op.total_cost}}</span></h6>
                     </div>
                     <div class="col-sm-3">
                         <h6> Order Status : {{op.status}}</h6>

@@ -106,23 +106,27 @@
             
         </div>
     </nav>
-    <div class="container-fluid">
-        <div class="row">
-            <ul class="list-inline bg-danger d-flex justify-content-evenly gradient2-custom">
-                <li class="list-inline-item"><a class="nav-link  text-white " href="{% url 'category' 1 %}" tabindex="-1" aria-disabled="true">Regular</a></li>
-                <p class="text-white list-inline-item h4">|</p>
-                <li class="list-inline-item"><a class="nav-link text-white " href="{% url 'category' 2 %}" tabindex="-1" aria-disabled="true">Fruits</a></li>
-                <p class="text-white list-inline-item h4">|</p>
-                <li class="list-inline-item"><a class="nav-link text-white " href="{% url 'category' 3 %}" tabindex="-1" aria-disabled="true">Vegetables</a></li>
-                <p class="text-white list-inline-item h4">|</p>
-                <li class="list-inline-item"><a class="nav-link text-white " href="{% url 'category' 4 %}" tabindex="-1" aria-disabled="true">Dairy</a></li>
-                <p class="text-white list-inline-item h4">|</p>
-                <li class="list-inline-item"><a class="nav-link text-white " href="{% url 'category' 5 %}" tabindex="-1" aria-disabled="true">Snacks</a></li>
-                <p class="text-white list-inline-item h4">|</p>
-                <li class="list-inline-item"><a class="nav-link text-white " href="{% url 'category' 6 %}" tabindex="-1" aria-disabled="true">Beverages</a></li>
+    <nav class="navbar navbar-expand-md p-0 bg-danger gradient2-custom">
+        <button class="navbar-toggler ml-auto " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+            <ul class="navbar-nav list-inline bg-danger d-flex justify-content-evenly gradient2-custom w-100 m-0">
+            <li class="list-inline-item"><a class="nav-link  text-white " href="{% url 'category' 1 %}" tabindex="-1" aria-disabled="true">Regular</a></li>
+            <p class="text-white list-inline-item h4">|</p>
+            <li class="list-inline-item"><a class="nav-link text-white " href="{% url 'category' 2 %}" tabindex="-1" aria-disabled="true">Fruits</a></li>
+            <p class="text-white list-inline-item h4">|</p>
+            <li class="list-inline-item"><a class="nav-link text-white " href="{% url 'category' 3 %}" tabindex="-1" aria-disabled="true">Vegetables</a></li>
+            <p class="text-white list-inline-item h4">|</p>
+            <li class="list-inline-item"><a class="nav-link text-white " href="{% url 'category' 4 %}" tabindex="-1" aria-disabled="true">Dairy</a></li>
+            <p class="text-white list-inline-item h4">|</p>
+            <li class="list-inline-item"><a class="nav-link text-white " href="{% url 'category' 5 %}" tabindex="-1" aria-disabled="true">Snacks</a></li>
+            <p class="text-white list-inline-item h4">|</p>
+            <li class="list-inline-item"><a class="nav-link text-white " href="{% url 'category' 6 %}" tabindex="-1" aria-disabled="true">Beverages</a></li>
             </ul>
         </div>
-    </div>
+    </nav>
+    <br>
     {% block main-content %}{% endblock main-content %}
     {% block banner-slider %}{% endblock banner-slider %}
     <br>

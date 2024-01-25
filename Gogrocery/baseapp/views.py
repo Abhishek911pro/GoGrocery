@@ -474,10 +474,9 @@ def orderbydate(request, date):
     for i in order_placed:
         orderDate.append(i.ordered_date.date())
     orderDate = list(set(orderDate))
-
+    
     newOrderplaced = []
     for i in order_placed:
-        print(date == str(i.ordered_date.date()))
         if date == str(i.ordered_date.date()):
             newOrderplaced.append(i)
 
